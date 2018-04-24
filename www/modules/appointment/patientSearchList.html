@@ -1,0 +1,42 @@
+<!-- State view -->
+<ion-nav-view name="mainContent">
+  <ion-content class="has-header">
+    <div class="list">
+      <md-card style="margin:0px!important;margin-top: 8px!important;" ng-repeat="usr in users">
+        <md-content>
+          <md-list>
+            <md-list-item class="md-3-line">
+              <md-button class="md-fab md-primary" aria-label="Use Android">
+                <!-- <img ng-if="usr.profile" ng-src="{{usr.profile}}"> -->
+                <img class="md-fab md-disabled right" ng-src="{{usr.profile? usr.profile:'/assets/images/noimage.jpg'}}" aria-label="Use Android" style="width: 43px;height: 50px;">
+              </md-button>
+              <div class="md-list-item-text">
+                <h3>{{usr.prefix|titleCase}} {{usr.first_name}} {{usr.last_name}}</h3>
+                <h4>{{usr.phone_number}}</h4>
+                <p>{{usr.specification}}</p>
+                <h3 ng-repeat="fee in usr.fees">
+                  <p ng-if="fee.type==='clinic_fees'">Clinic Fee: INR {{fee.price}} </p>
+                  <p ng-if="fee.type==='consultant_fees'">Consultant Fee: INR {{fee.price}}</p>
+                </h3>
+              </div>
+            </md-list-item>
+            <md-list-item class="md-2-line">
+              <div class="md-list-item-text">
+                <h3 ng-repeat="time in usr.available_time | orderBy:'start_time'">
+                  <p ng-if="time.type==='Morning'">Morning: {{time.start_time|date:'HH:mm'}}-{{time.end_time|date:'HH:mm'}} </p>
+                  <p ng-if="time.type==='Regular'">Afternoon: {{time.start_time|date:'HH:mm'}}-{{time.end_time|date:'HH:mm'}} </p>
+                  <p ng-if="time.type==='Evening'">Evening: {{time.start_time|date:'HH:mm'}}-{{time.end_time|date:'HH:mm'}} </p>
+                  <p ng-if="time.type==='Online_Consultant'">Online Consultant: {{time.start_time|date:'HH:mm'}}-{{time.end_time|date:'HH:mm'}} </p>
+                </h3>
+              </div>
+            </md-list-item>
+          </md-list>
+          <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <md-button class="md-raised md-primary">Call</md-button>
+            <md-button class="md-raised md-warn" ng-click="bookAppointment(usr._id, $event)">Book</md-button>
+          </section>
+        </md-content>
+      </md-card>
+    </div>
+  </ion-content> 
+</ion-nav-view>

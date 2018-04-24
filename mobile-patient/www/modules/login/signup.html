@@ -1,0 +1,46 @@
+<ion-nav-view name="Signup">
+  <ion-content>
+     <md-content layout="column" layout-padding>
+      <div layout="column" layout-padding md-theme="app-wht">
+        <form class="login" name="signUp">
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>wc</md-icon>
+            <label>Prefix (required)</label>
+            <md-select ng-model="user.prefix" ng-required="true">
+              <md-option ng-repeat="pre in prefix" value="{{pre.abbrev}}">
+                {{pre.abbrev}}
+              </md-option>
+            </md-select>
+          </md-input-container> 
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>person</md-icon>
+            <input ng-model="user.first_name" type="text" placeholder="Firstname (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>person</md-icon>
+            <input ng-model="user.last_name" type="text" placeholder="Lastname (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-block">
+            <md-icon>email</md-icon>
+            <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container  class="md-icon-float md-block">
+            <md-icon>lock</md-icon>
+            <input ng-model="user.password" type="password" placeholder="Password (required)" ng-minlength="6" ng-maxlength="20" name="password" ng-required="true">
+            <label ng-show="signUp.password.$error.minlength">Atleast 6 characters long.</label>
+            <label ng-show="signUp.password.$error.maxlength">Can't be longer than 20 characters.</label>
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>phone_number</md-icon>
+            <input ng-model="user.phone_number" ng-pattern="/^[789]\d{9}$/" type="text" placeholder="Phone Number (required)" name="phone_number" ng-required="true">
+            <label ng-show="signUp.phone_number.$error.pattern">Please enter valid number</label>
+          </md-input-container>
+          <div layout="row" layout-align="center center" layout-wrap>
+            <md-button class="md-raised md-primary" ng-click="signup(user, $event)" ng-disabled="signUp.$invalid && signUp.$error">Submit</md-button>
+            <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+          </div>
+        </form>
+      </div>
+    </md-content>
+  </ion-content>
+</ion-nav-view>

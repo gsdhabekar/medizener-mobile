@@ -1,0 +1,73 @@
+<!-- State view -->
+<ion-nav-view name="feesUpdate">
+  <ion-content class="has-header roomBG">
+    <div class="list">
+      <md-card class="padding-16x" md-theme="app-theme">
+        <form name="updateFeesDoctor">
+            <md-input-container class="md-icon-float md-block">
+              <!-- <md-icon md-svg-src="/assets/images/icons/stethoscope.svg"></md-icon> -->
+              <md-icon>home</md-icon>
+              <label>Home Facility Available</label>
+              <md-select ng-model="user.home_facility" ng-required="true">
+                <md-option ng-repeat="homeFacility in home_Facility" ng-value="homeFacility.flag">{{homeFacility.flag?'Yes':'No'}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container ng-show="user.home_facility" class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/rupee-indian.svg"></md-icon> -->
+              <label>Home Visit Fee (required) {{homeFacility.flag}}</label>
+              <md-icon>attach_money</md-icon>
+              <input ng-model="user.home_facility_fees" ng-pattern="/^[0-9]{1,7}$/" type="text" placeholder="Home Visit Fee (required)" name="home_facility_fees" ng-required="user.home_facility?true:false">
+              <label ng-show="updateFeesDoctor.home_facility_fees.$error.pattern">Please enter valid number</label>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/rupee-indian.svg"></md-icon> -->
+              <md-icon>attach_money</md-icon>
+              <label>Hospital Regular Fees (required)</label>
+              <input ng-model="user.hospital_fees" ng-pattern="/^[0-9]{1,7}$/" name="hospital_fees" type="text" placeholder="Hospital Regular Fees (required)" ng-required="true">
+              <label ng-show="updateFeesDoctor.hospital_fees.$error.pattern">Please enter valid number</label>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/rupee-indian.svg"></md-icon> -->
+              <md-icon>attach_money</md-icon>
+              <label>Patient Friendly Fees (required)</label>
+              <input ng-model="user.patient_friendly_fees" ng-pattern="/^[0-9]{1,7}$/" type="text" placeholder="Patient Friendly Fees (required)" name="patient_friendly_fees" ng-required="true">
+              <label ng-show="updateFeesDoctor.patient_friendly_fees.$error.pattern">Please enter valid number</label>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/rupee-indian.svg"></md-icon> -->
+              <md-icon>attach_money</md-icon>
+              <label>Follow Up Fees (required)</label>
+              <input ng-model="user.follow_up_fees" ng-pattern="/^[0-9]{1,7}$/" type="text" placeholder="Follow Up Fees (required)" name="follow_up_fees" ng-required="true">
+              <label ng-show="updateFeesDoctor.follow_up_fees.$error.pattern">Please enter valid number</label>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/rupee-indian.svg"></md-icon> -->
+              <md-icon>attach_money</md-icon>
+              <label>Emergency Fees (required)</label>
+              <input ng-model="user.emergency_fees" ng-pattern="/^[0-9]{1,7}$/" type="text" placeholder="Emergency Fees (required)" name="emergency_fees" ng-required="true">
+              <label ng-show="updateFeesDoctor.emergency_fees.$error.pattern">Please enter valid number</label>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/rupee-indian.svg"></md-icon> -->
+              <label>Audio Fees (required)</label>
+              <md-icon>attach_money</md-icon>
+              <input ng-model="user.audio_fees" ng-pattern="/^[0-9]{1,7}$/" type="text" placeholder="Audio Fees (required)" name="audio_fees" ng-required="true">
+              <label ng-show="updateFeesDoctor.audio_fees.$error.pattern">Please enter valid number</label>
+            </md-input-container>
+             <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/rupee-indian.svg"></md-icon> -->
+              <label>Video Fees (required)</label>
+              <md-icon>attach_money</md-icon>
+              <input ng-model="user.video_fees" ng-pattern="/^[0-9]{1,7}$/" type="text" placeholder="Video Fees (required)" name="video_fees" ng-required="true">
+              <label ng-show="updateFeesDoctor.video_fees.$error.pattern">Please enter valid number</label>
+            </md-input-container>
+            <div layout="row" layout-align="center center" layout-wrap>
+              <md-button class="md-raised md-primary" ng-click="update(user,$event)" ng-disabled="updateFeesDoctor.$invalid && updateFeesDoctor.$error">Update</md-button>
+              <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+            </div>
+        </form>
+      </md-card>
+    </div>
+  </ion-content>
+</ion-nav-view>

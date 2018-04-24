@@ -1,0 +1,50 @@
+<script type="text/ng-template" id="inputDatePicker.html">
+  <ion-item class="item-icon-left" ng-click="to.onclick(model,options)">
+    {{ model[options.key] | date : to.dateFormat }} (DOB)
+    <i class="icon ion-ios-calendar-outline"></i>
+  </ion-item>
+</script>
+<ion-nav-view hide-back-button="true" view-title="Address">
+  <ion-content class="has-header">
+    <div class="list">
+      <md-card class="padding-16x" md-theme="app-theme">
+        <form name="myProfile">
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>place</md-icon>
+            <label>Address Type (required)</label>
+            <md-select ng-model="user.address_type" ng-required="true" ng-change="addressType(user)">
+              <md-option ng-repeat="add in Address" ng-value="add.type">
+                {{add.type}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>place</md-icon>
+            <input ng-model="user.address1" type="text" placeholder="Home Address1 (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>place</md-icon>
+            <input ng-model="user.address2" type="text" placeholder="Home Address2 (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>place</md-icon>
+            <input ng-model="user.city" type="text" placeholder="Home City (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>place</md-icon>
+            <input ng-model="user.state" type="text" placeholder="Home State (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>place</md-icon>
+            <input ng-model="user.postal_code" ng-pattern="/^[0-9]{6,6}$/" type="text" placeholder="Home Pincode (required)" name="postal_code" ng-required="true">
+            <label ng-show="addStaff.postal_code.$error.pattern">Please enter valid number</label>
+          </md-input-container>
+          <div layout="row" layout-align="center center" layout-wrap>
+            <md-button class="md-raised md-primary" ng-click="update(user,$event);" ng-disabled="myProfile.$invalid && myProfile.$error">Update</md-button>
+            <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+          </div>
+        </form>
+      </md-card>
+    </div>
+  </ion-content>
+</ion-nav-view>

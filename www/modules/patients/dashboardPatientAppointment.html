@@ -1,0 +1,40 @@
+<!-- State view -->
+<ion-nav-view name="dashboardPatientAppointment">
+  <ion-content class="has-header">
+    <md-content>
+      <div md-theme="app-wht" layout="row" layout-wrap>
+        <div class="full-width" layout="row" layout-align="center" layout-wrap>
+          <div class="border-right" flex="50">
+            <md-button class="md-primary menu-tab" ng-click="appointment()">
+              <md-icon md-svg-src="assets/images/medical/add_appointment.svg"></md-icon>Appointment
+            </md-button>
+          </div>
+          <div flex="50">
+            <md-button class="md-primary menu-tab" ng-click="addPatient()">
+              <md-icon md-svg-src="assets/images/medical/admit_patient.svg"></md-icon>Add New Patient
+            </md-button>
+          </div>
+        </div>
+        <div class="full-width" layout="row" layout-align="center" layout-wrap>
+          <div class="border-right" flex="50">
+            <md-button class="md-primary menu-tab" ng-click="viewPatient()">
+              <md-icon md-svg-src="assets/images/medical/patient_info.svg"></md-icon>View Patient
+            </md-button>
+          </div>
+          <div flex="50">
+            <md-button class="md-primary menu-tab" ng-click="historyPatient()">
+              <md-icon md-svg-src="assets/images/medical/bill.svg"></md-icon>History Patient
+            </md-button>
+          </div>
+        </div>
+        <div class="full-width" layout="row">
+          <div class="border-right" flex="50">
+            <md-button class="md-primary menu-tab" ng-click="cancelAppointment()">
+              <md-icon md-svg-src="assets/images/medical/staff_info.svg"></md-icon>Remove Appointment
+            </md-button>
+          </div>
+        </div>
+      </div>
+    </md-content>
+  </ion-content>
+</ion-nav-view>

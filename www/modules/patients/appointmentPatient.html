@@ -1,0 +1,237 @@
+  <!-- State view -->
+<ion-nav-view name="viewStaff">
+  <ion-content class="has-header">
+    <div class="list">
+      <md-tabs md-dynamic-height md-border-bottom class="md-padding">
+        <md-tab label="Book Appointment">
+        <md-content md-theme="app-theme" class="md-padding" ng-if="!bookedFlag">
+          <div layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <md-radio-group ng-model="data.address"> 
+              <md-radio-button value="morning" class="md-primary" ng-if="morningTime">
+                {{morningTime.address1}}, {{morningTime.address2}}, {{morningTime.city}}, {{morningTime.state}}-{{morningTime.postal_code}}
+                <br/>
+                (OPD Time: <b>{{morningTime.start_time| date:'HH:mm'}}-{{morningTime.end_time| date:'HH:mm'}}</b>)
+              </md-radio-button>
+              <md-radio-button value="regular" class="md-primary" ng-if="regularTime">
+                {{regularTime.address1}}, {{regularTime.address2}}, {{regularTime.city}}, {{regularTime.state}}-{{regularTime.postal_code}}
+                <br/>
+                (OPD Time: <b>{{regularTime.start_time| date:'HH:mm'}}-{{regularTime.end_time| date:'HH:mm'}}</b>)
+              </md-radio-button>
+              <md-radio-button value="evening" class="md-primary" ng-if="eveningTime">
+                {{eveningTime.address1}}, {{eveningTime.address2}}, {{eveningTime.city}}, {{eveningTime.state}}-{{eveningTime.postal_code}}
+                <br/>
+                (OPD Time: <b>{{eveningTime.start_time| date:'HH:mm'}}-{{eveningTime.end_time| date:'HH:mm'}}</b>)
+              </md-radio-button>
+            </md-radio-group>
+          </div>
+          <hr ng-if="data.address"/>
+          <div ng-if="data.address" class="md-padding" layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <md-radio-group ng-model="data.fees"> 
+              <md-radio-button value="{{hospital_fees}}" class="md-primary" ng-click="feesUpdate(hospital_fees);">
+                Regular Time Fees: {{hospital_fees.price}}/-
+              </md-radio-button>
+              <md-radio-button value="{{patient_friendly_fees}}" class="md-primary" ng-click="feesUpdate(patient_friendly_fees);">
+                Patient Friendly Fees: {{patient_friendly_fees.price}}/-
+              </md-radio-button>
+              <md-radio-button value="{{follow_up_fees}}" class="md-primary" ng-click="feesUpdate(follow_up_fees);">
+                Followup Consultation Fees: {{follow_up_fees.price}}/-
+              </md-radio-button>
+            </md-radio-group>
+            <hr/>
+          </div>
+          <hr ng-if="data.address&&data.fees"/>
+          <md-content ng-if="data.address=='morning'&&data.fees">
+            <md-list>
+              <md-list-item class="md-1-line whiteColor" style="min-height:0px;">
+                <md-button>Morning</md-button>
+                <md-datepicker ng-model="calenderDate" md-min-date="minDate" ng-change="calenderChange(calenderDate)"></md-datepicker>
+              </md-list-item>
+              <h6 class="whiteColor" style="text-align: center;">{{morningTime.address1}}, {{morningTime.address2}}, {{morningTime.city}}, {{morningTime.state}}-{{morningTime.postal_code}}</h6>
+              <div class="text-center">
+                <md-button  ng-repeat="t in morningTimes" ng-class="t.status?'md-raised text-center md-disabled': 'md-raised text-center md-primary'" ng-disabled="t.status" ng-click="book(t, morningTime.address_type)">{{t.time| date:'HH : mm'}}</md-button>
+              </div>
+            </md-list>
+          </md-content>
+          <md-content ng-if="data.address=='regular'&&data.fees">
+            <md-list>
+              <md-list-item class="md-1-line whiteColor" style="min-height:0px;">
+                <md-button>Afternoon</md-button>
+                <md-datepicker ng-model="calenderDate" md-min-date="minDate" ng-change="calenderChange(calenderDate)"></md-datepicker>
+              </md-list-item>
+              <h6 class="whiteColor" style="text-align: center;">{{regularTime.address1}}, {{regularTime.address2}}, {{regularTime.city}}, {{regularTime.state}}-{{regularTime.postal_code}}</h6>
+              <div class="text-center">
+                <md-button ng-repeat="t in regularTimes" ng-class="t.status?'md-raised text-center md-disabled': 'md-raised text-center md-primary'" ng-disabled="t.status" ng-click="book(t, regularTime.address_type)">{{t.time| date:'HH : mm'}}</md-button>
+              </div>
+            </md-list>
+          </md-content>
+          <md-content ng-if="data.address=='evening'&&data.fees">
+            <md-list>
+              <md-list-item class="md-1-line whiteColor" style="min-height:0px;">
+                <md-button>Evening</md-button>
+                <md-datepicker ng-model="calenderDate" md-min-date="minDate" ng-change="calenderChange(calenderDate)"></md-datepicker>
+              </md-list-item>
+              <h6 class="whiteColor" style="text-align: center;">{{eveningTime.address1}}, {{eveningTime.address2}}, {{eveningTime.city}}, {{eveningTime.state}}-{{eveningTime.postal_code}}</h6>
+              <div class="text-center">
+                <md-button ng-repeat="t in eveningTimes" ng-class="t.status?'md-raised text-center md-disabled': 'md-raised text-center md-primary'" ng-disabled="t.status" ng-click="book(t, eveningTime.address_type)">{{t.time| date:'HH : mm'}}</md-button>
+              </div>
+            </md-list>
+          </md-content>
+        </md-content>
+        <md-content md-theme="app-theme" class="md-padding appDetails" ng-if="bookedFlag">
+          <md-list>
+            <div class="md-list-item-text">
+              <md-content class="md-no-momentum">
+                <md-input-container class="md-icon-float md-block remMargin">
+                  <md-icon>person</md-icon>
+                  <p><b>{{user.prefix}} {{user.first_name}}  {{user.last_name}}</b></p>
+                </md-input-container>
+                <md-input-container md-no-float class="md-block remMargin">
+                  <md-icon>phone_number</md-icon>
+                  <p><b>{{user.phone_number}}</b></p>
+                </md-input-container>
+                <md-input-container class="md-block remMargin">
+                  <md-icon>email</md-icon>
+                  <p><b>{{user.email}}</b></p>
+                </md-input-container>
+                <md-input-container md-no-float class="md-block remMargin">
+                  <p><b>{{user.gender}} <md-icon style="color: #FFF;">opacity</md-icon>{{user.blood_group}}</b></p>
+                  <md-icon>wc</md-icon>
+                </md-input-container>
+                <md-input-container md-no-float class="md-block remMargin">
+                  <md-icon>date_range</md-icon>
+                  <p><b>{{user.dob|date:'mediumDate'}} ({{calculateAge(user.dob)}} years)</b></p>
+                </md-input-container>
+                <md-input-container md-no-float class="md-block remMargin">
+                  <md-icon>date_range</md-icon>
+                  <p><b>{{bookTime.time | date:'HH : mm'}} - {{bookTime.time | date:'mediumDate'}}</b></p>
+                </md-input-container>
+                <md-input-container md-no-float class="md-block remMargin">
+                  <md-icon>place</md-icon>
+                  <p><b>{{add.address1}}, {{add.address2}}</b></p>
+                </md-input-container>
+                <md-input-container md-no-float class="md-block remMargin">
+                  <md-icon>place</md-icon>
+                  <p><b>{{add.city}}, {{add.state}}, {{add.postal_code}}</b></p>
+                </md-input-container>
+                <md-input-container md-no-float class="md-block remMargin">
+                  <md-icon>attach_money</md-icon>
+                  <p ng-if="selectFees.type==='hospital_fees'"><b>Regular Time Fees: {{selectFees.price}}/-</b></p>
+                  <p ng-if="selectFees.type==='patient_friendly_fees'"><b>Patient Friendly Fees: {{selectFees.price}}/-</b></p>
+                  <p ng-if="selectFees.type==='follow_up_fees'"><b>Followup Consultation Fees: {{selectFees.price}}/-</b></p>
+                </md-input-container>
+              </md-content>
+              <md-input-container md-no-float class="md-block remMargin">
+                  <md-icon>description</md-icon>
+                  <input type="text" ng-model="details" name="details" placeholder="enter symptoms description">
+                </md-input-container>
+              </md-content>
+            </div>
+            <section class="noneColor" layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+              <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
+              <md-button class="md-raised md-warn nomargin" ng-click="submit(user._id,bookTime,details,ev)">Submit</md-button>
+            </section>
+          </md-list>
+        </md-content>
+        </md-tab>
+        <md-tab label="Consult Online">
+          <md-content md-theme="app-theme" class="md-padding" ng-if="!bookedConsultFlag">
+          <div layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <md-radio-group ng-model="data.time"> 
+              <md-radio-button value="audio" class="md-primary" ng-if="morningTime">
+               Audio Consultation (Time: <b>{{online_ConsultantTime.start_time| date:'HH:mm'}}-{{online_ConsultantTime.end_time| date:'HH:mm'}}</b>)
+              </md-radio-button>
+              <md-radio-button value="video" class="md-primary" ng-if="regularTime">
+                Video Consultation
+                (Time: <b>{{online_ConsultantTime.start_time| date:'HH:mm'}}-{{online_ConsultantTime.end_time| date:'HH:mm'}}</b>)
+              </md-radio-button>
+            </md-radio-group>
+          </div>
+          <hr ng-if="data.time"/>
+          <div ng-if="data.time" class="md-padding" layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <md-radio-group ng-model="data.fees"> 
+              <md-radio-button value="{{audio_fees}}" class="md-primary" ng-click="feesUpdate(audio_fees);">
+                Audio Fees: {{audio_fees.price}}/-
+              </md-radio-button>
+              <md-radio-button value="{{video_fees}}" class="md-primary" ng-click="feesUpdate(video_fees);">
+                Video Fees: {{video_fees.price}}/-
+              </md-radio-button>
+            </md-radio-group>
+            <hr/>
+          </div>
+          <hr ng-if="data.time&&data.fees"/>
+          <div ng-if="data.time&&data.fees" layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <!-- <md-button class="md-raised md-primary" ng-click="previous()">Previous</md-button> -->
+            <md-button class="md-raised md-primary" ng-click="current()">{{displayDate|date}}</md-button>
+            <md-datepicker ng-model="calenderDate" md-min-date="minDate" ng-change="calenderChange(calenderDate)"></md-datepicker>
+          </div>
+          <md-content ng-if="data.time&&data.fees">
+            <md-list>
+              <md-list-item class="md-2-line whiteColor" style="min-height:0px;">
+                <md-button>Online Consultation</md-button>
+              </md-list-item>
+              <h6 class="whiteColor" style="text-align: center;">{{online_ConsultantTime.address1}}, {{online_ConsultantTime.address2}}, {{online_ConsultantTime.city}}, {{online_ConsultantTime.state}}-{{online_ConsultantTime.postal_code}}</h6>
+              <div class="text-center">
+                <md-button ng-repeat="t in online_ConsultantTimes" ng-class="t.status?'md-raised text-center md-disabled': 'md-raised text-center md-primary'" ng-disabled="t.status" ng-click="booked(t, online_ConsultantTime.address_type)">{{t.time| date:'HH : mm'}}</md-button>
+              </div>
+            </md-list>
+          </md-content>
+        </md-content>
+        <md-content ng-if="bookedConsultFlag">
+          <md-list>
+            <div class="md-list-item-text">
+                <md-content class="md-no-momentum">
+                  <md-input-container class="md-icon-float md-block remMargin">
+                    <md-icon>person</md-icon>
+                    <p><b>{{user.prefix}} {{user.first_name}}  {{user.last_name}}</b></p>
+                  </md-input-container>
+                  <md-input-container md-no-float class="md-block remMargin">
+                    <md-icon>phone_number</md-icon>
+                    <p><b>{{user.phone_number}}</b></p>
+                  </md-input-container>
+                  <md-input-container class="md-block">
+                    <md-icon>email</md-icon>
+                    <p><b>{{user.email}}</b></p>
+                  </md-input-container>
+                  <md-input-container md-no-float class="md-block remMargin">
+                    <p><b>{{user.gender}} <md-icon>opacity</md-icon>{{user.blood_group}}</b></p>
+                    <md-icon>wc</md-icon>
+                  </md-input-container>
+                  <md-input-container md-no-float class="md-block remMargin">
+                    <md-icon>date_range</md-icon>
+                    <p><b>{{user.dob|date:'mediumDate'}} ({{calculateAge(user.dob)}} years)</b></p>
+                  </md-input-container>
+                  <md-input-container md-no-float class="md-block remMargin">
+                    <md-icon>date_range</md-icon>
+                    <p><b>{{bookTime.time | date:'HH : mm'}} - {{bookTime.time | date:'mediumDate'}}</b></p>
+                  </md-input-container>
+                  <md-input-container md-no-float class="md-block remMargin">
+                    <md-icon>place</md-icon>
+                    <p><b>{{add.address1}}, {{add.address2}}</b></p>
+                  </md-input-container>
+                  <md-input-container md-no-float class="md-block remMargin">
+                    <md-icon>place</md-icon>
+                    <p><b>{{add.city}}, {{add.state}}, {{add.postal_code}}</b></p>
+                  </md-input-container>
+                  <md-input-container md-no-float class="md-block remMargin">
+                    <md-icon>attach_money</md-icon>
+                    <p ng-if="selectFees.type==='audio_fees'"><b>Audio Fees: {{selectFees.price}}/-</b></p>
+                    <p ng-if="selectFees.type==='video_fees'"><b>Video Fees: {{selectFees.price}}/-</b></p>
+                  </md-input-container>
+                </md-content>
+                <md-input-container md-no-float class="md-block remMargin">
+                    <md-icon>description</md-icon>
+                    <input type="text" ng-model="details" name="details" placeholder="enter symptoms description">
+                  </md-input-container>
+                </md-content>
+            </div>
+            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+              <md-button class="md-raised md-primary" ng-click="back()">Back</md-button>
+              <md-button class="md-raised md-warn nomargin" ng-click="submit(user._id,bookTime,details,ev)">Submit</md-button>
+            </section>
+          </md-list>
+        </md-content>
+        </md-tab>
+      </md-tabs>
+    </div>
+  </ion-content>
+</ion-nav-view>

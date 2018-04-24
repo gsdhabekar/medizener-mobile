@@ -1,0 +1,74 @@
+<!-- State view -->
+<ion-nav-view name="mainContent">
+  <ion-content class="has-header">
+    <div class="list">
+      <md-content class="md-padding">
+        <div layout="row" layout-align="center" layout-padding>
+          <p class="mz-title"><md-icon md-svg-src="assets/images/app_icon.svg"></md-icon>MEDIZENER</p>
+        </div>
+        <div md-theme="app-wht" layout="row" layout-wrap>
+          <div class="full-width" layout="row" layout-align="center" layout-wrap>
+            <div class="border-right" flex="50">
+              <md-button class="md-primary menu-tab" ng-click="bookAppointment()">
+                <md-icon md-svg-src="assets/images/medical/appointment.svg"></md-icon>Appointment
+              </md-button>
+            </div>
+            <div flex="50">
+              <md-button class="md-primary menu-tab" ng-click="addAppointment()">
+                <md-icon md-svg-src="assets/images/medical/add_appointment.svg"></md-icon>Add Appointment
+              </md-button>
+            </div>
+          </div>
+          <div class="full-width" layout="row" layout-align="center" layout-wrap>
+            <div class="border-right" flex="50">
+              <md-button class="md-primary menu-tab" ng-click="staffInfo()">
+                <md-icon md-svg-src="assets/images/medical/mr_appointment.svg"></md-icon>MR Appointment
+              </md-button>
+            </div>
+            <div flex="50">
+              <md-button class="md-primary menu-tab" ng-click="onlineAppointment()">
+                <md-icon md-svg-src="assets/images/medical/online.svg"></md-icon>Online Appointment
+              </md-button>
+            </div>
+          </div>
+          <div class="full-width" layout="row" layout-align="center" layout-wrap>
+            <div class="border-right" flex="50">
+              <md-button class="md-primary menu-tab" ng-click="admitPatient()">
+                <md-icon md-svg-src="assets/images/medical/admit_patient.svg"></md-icon>Admit Patient
+              </md-button>
+            </div>
+            <div flex="50">
+              <md-button class="md-primary menu-tab" ng-click="emergencyNo()">
+                <md-icon md-svg-src="assets/images/medical/emergency.svg"></md-icon>Emergencies
+              </md-button>
+            </div>
+          </div>
+          <div class="full-width" layout="row" layout-align="center" layout-wrap>
+            <div class="border-right" flex="50">
+              <md-button class="md-primary menu-tab" ng-click="patientInfo()">
+                <md-icon md-svg-src="assets/images/medical/patient_info.svg"></md-icon>Patient Information
+              </md-button>
+            </div>
+            <div flex="50">
+              <md-button class="md-primary menu-tab" ng-click="staffInfo()">
+                <md-icon md-svg-src="assets/images/medical/staff_info.svg"></md-icon>Staff Information
+              </md-button>
+            </div>
+          </div>
+          <div class="full-width" layout="row" layout-align="center" layout-wrap>
+            <div class="border-right" flex="50">
+              <md-button class="md-primary menu-tab" ng-click="staffInfo()">
+                <md-icon md-svg-src="assets/images/medical/bill.svg"></md-icon>Bill and Collections
+              </md-button>
+            </div>
+            <div flex="50">
+              <md-button class="md-primary menu-tab">
+                <md-icon md-svg-src="assets/images/medical/appointment.svg"></md-icon>Health Camp
+              </md-button>
+            </div>
+          </div>
+        </div>
+      </md-content>
+    </div>
+  </ion-content> 
+</ion-nav-view>

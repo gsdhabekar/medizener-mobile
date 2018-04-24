@@ -1,0 +1,111 @@
+<!-- State view -->
+<ion-nav-view name="appoinmentList">
+  <ion-content class="has-header">
+    <div class="list">
+      <md-card class="padding-16x" md-theme="app-theme">
+        <form name="addPatient">
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>wc</md-icon>
+            <h3>{{users.first_name}} {{users.last_name}}</h3>
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block" flex-gt-sm>
+            <md-icon>person</md-icon>
+            <h3>Room No: {{room.name}}-{{room.room_no}}</h3>
+            <h3>Room Type: {{room.room_type}}</h3>
+            <h3>Room Fees: {{room.fees}}</h3>
+            <h3>Room Facility: {{room.other_facility}}</h3>
+          </md-input-container>
+          <span layout="row" class="warn"><hr flex/> <code>&nbsp;<b ng-if="!appointBedHistory.bed_history.visits.length"> NO</b> Medical History &nbsp;</code><hr flex/></span>
+          <div class="md-2-line md-padding" layout-align="center center" ng-repeat="usr in appointBedHistory.bed_history.visits">
+            <div class="md-list-item-text">
+              <h6><b>Visit-{{$index+1}}.</b> Appointment Date: {{usr.created_date|date:"dd-MMM-yy '@'h:mma"}}</h6>
+              <h6>Symptoms of summary: {{usr.symptoms}}</h6>
+              <table layout-align="center center" class="borderLine" ng-if="usr.medicineData.length>0" style="width: 100%;">
+                <tr class="borderLine">
+                  <th class="borderLine"><b>Name & Power of medicine</b></th>
+                  <th class="borderLine"><b>No of doses</b></th>
+                  <th class="borderLine"><b>Daily doses</b></th>
+                  <th class="borderLine"><b>Meals</b></th>
+                </tr>
+                <tr class="borderLine" ng-repeat="medicine in usr.medicineData">
+                  <td class="borderLine">{{medicine.name}}</td>
+                  <td class="borderLine">{{medicine.doses}}</td>
+                  <td class="borderLine">{{medicine.daily}}</td>
+                  <td class="borderLine">{{medicine.meals}}</td>
+                </tr>
+              </table>
+              <h5 style="text-align: right;">Doctor: {{usr.doctor}}</h5>
+              <h3 style="text-align: center;">- - - - - - - - - - - - - -</h3>
+            </div>
+          </div>
+          <md-input-container class="md-icon-float md-block md-padding" flex-gt-sm>
+            <md-icon>attach_money</md-icon>
+            <input ng-model="room.price" type="text" ng-pattern="/^[0-9]{1,7}$/" placeholder="Total Charge (required)" name="price" ng-required="true">
+            <label ng-show="editRoom.price.$error.pattern">Please enter valid number</label>
+          </md-input-container>
+          <div class="md-padding">
+            <h6><b><u>Symptoms of summary</u>:</b></h6>
+            <md-input-container md-no-float class="md-block">
+              <md-icon style="display:inline-block;cursor:pointer;" ng-click="record('symptoms')">phone_in_talk</md-icon>
+              <input ng-model="symptoms" type="text" placeholder="Speech to Text" name="symptoms">
+            </md-input-container>
+          </div>
+          <span layout="row" class="warn"><hr flex/> <code>&nbsp; Add Medicine &nbsp;</code><hr flex/></span>
+            <div layout-gt-sm="row">
+              <md-input-container md-no-float class="md-block">
+                <md-icon ng-click="record('name')">local_hospital</md-icon>
+                <label>Name</label>
+                <input ng-model="sym.name" type="text" placeholder="Name & Power of medicine" >
+              </md-input-container>
+              <md-input-container class="md-block" flex-gt-sm>
+                <md-icon ng-click="record('doses')">local_hospital</md-icon>
+                <label>No of doses</label>
+                <input ng-model="sym.doses" placeholder="No of doses">
+              </md-input-container>
+              <md-input-container class="md-block" flex-gt-sm>
+                <md-icon ng-click="record('daily')">local_hospital</md-icon>
+                <label>Daily doses</label>
+                <input ng-model="sym.daily" placeholder="Daily doses">
+              </md-input-container>
+              <md-input-container class="md-block" flex-gt-sm>
+                <md-icon ng-click="record('meals')">local_hospital</md-icon>
+                <label>Meals (Yes/No)</label>
+                <input ng-model="sym.meals" placeholder="Meals">
+              </md-input-container>
+            </div>
+            <div layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+              <md-button class="md-raised md-primary" ng-click="addMedicine(sym, $event)">Add</md-button>
+            </div>
+          <table layout-align="center center" class="borderLine" ng-if="medicineData.length>0" style="width: 100%;">
+            <tr class="borderLine"> 
+              <th class="borderLine"><b>Name & Power of medicine</b></th>
+              <th class="borderLine"><b>No of doses</b></th>
+              <th class="borderLine"><b>Daily doses</b></th>
+              <th class="borderLine"><b>Meals</b></th>
+            </tr>
+            <tr class="borderLine" ng-repeat="res in medicineData">
+              <td class="borderLine">{{res.name}}</td>
+              <td class="borderLine">{{res.doses}}</td>
+              <td class="borderLine">{{res.daily}}</td>
+              <td class="borderLine">{{res.meals}}</td>
+            </tr>
+          </table>
+          <md-input-container class="md-icon-float md-block" flex-gt-sm>
+            <md-icon>wc</md-icon>
+            <input ng-model="doctor" type="text" placeholder="Doctor (required)" name="doctor" ng-required="true">
+          </md-input-container>
+          <div layout="row" layout-align="center center" layout-wrap>
+            <md-button class="md-raised md-primary" ng-click="submit(user,btn,$event);" ng-disabled="addPatient.$invalid && addPatient.$error">{{btn}}</md-button>
+            <md-button class="md-raised md-primary" ng-click="addVisit(user, medicineData, symptoms, doctor, $event);" ng-disabled="addPatient.$invalid && addPatient.$error">Add Visit</md-button>
+            <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+          </div>
+        </form>
+      </md-card>
+    </div>
+  </ion-content>
+</ion-nav-view>
+<style type="text/css">
+  .borderLine{
+    border: inset!important;
+  }
+</style>

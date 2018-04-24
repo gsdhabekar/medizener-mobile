@@ -1,0 +1,57 @@
+  <!-- State view -->
+  <ion-nav-view name="viewStaff">
+    <ion-content class="has-header roomBG">
+      <div class="list">
+        <md-card>
+          <md-content class="md-padding" md-theme="app-theme">
+            <md-card>
+              <md-list>
+                <md-list-item class="md-2-line mdLine">
+                  <div class="md-list-item-text">
+                    <h3>&nbsp;<b>{{user.prefix}} {{user.first_name}} {{user.last_name}}</b></h3>
+                    <h6>&nbsp;<md-icon>wc</md-icon>{{user.gender}} (Age: {{calculateAge(user.dob)}} years)</h6>
+                    <h6>&nbsp;<md-icon>call</md-icon>{{user.phone_number}}</h6>
+                  </div>
+                  <md-button class="md-fab md-disabled right" ng-disabled="true" aria-label="Use Android">
+                    <img class="md-fab md-disabled right" ng-src="{{user.profile? user.profile:'/assets/images/noimage.jpg'}}" aria-label="Use Android" style="width: 45px;height: 50px;">
+                  </md-button>
+                </md-list-item>
+                <span layout="row" class="primary"><hr flex/> <code>&nbsp;<b ng-if="appointData.length<1"> NO</b> Medical History &nbsp;</code><hr flex/></span>
+                <md-list-item class="md-2-line mdLine" ng-repeat="appoint in appointData | orderBy:appointment_date:-1">
+                  <div class="md-list-item-text">
+                    <h6 class="warn"><b>Visit-{{$index+1}}.</b> Appointment Date: {{appoint.appointment_date*1000|date}}</h6>
+                    <h6>Symptoms of summary: {{appoint.symptones}}</h6>
+                    <table layout-align="center center" class="borderLine black" ng-if="appoint.medication.length>0" style="width: 100%;">
+                      <tr class="borderLine">
+                        <th class="borderLine"><b>Name & Power of medicine</b></th>
+                        <th class="borderLine"><b>No of doses</b></th>
+                        <th class="borderLine"><b>Daily doses</b></th>
+                        <th class="borderLine"><b>Meals</b></th>
+                      </tr>
+                      <tr class="borderLine" ng-repeat="medicine in appoint.medication">
+                        <td class="borderLine">{{medicine.name}}</td>
+                        <td class="borderLine">{{medicine.doses}}</td>
+                        <td class="borderLine">{{medicine.daily}}</td>
+                        <td class="borderLine">{{medicine.meals}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </md-list-item>
+                <div layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                  <md-button class="md-raised md-warn" ng-click="addPriscription(user._id)">Add Priscription</md-button>
+                </div>
+              </md-list>
+            </md-card>
+          </md-content>
+        </md-card>
+      </div>
+    </ion-content>
+  </ion-nav-view>
+<style type="text/css">
+  .mdLine{
+    padding: 0px 8px;
+  }
+  .borderLine{
+    border: inset!important;
+  }
+</style>

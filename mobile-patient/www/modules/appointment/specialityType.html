@@ -1,0 +1,27 @@
+<ion-nav-view name="mainContent">
+  <ion-content class="has-header">
+    <div class="list speType">
+      <md-cart>
+        <md-content class="md-padding">
+          <div layout="row" layout-align="center" layout-padding>
+            <p class="mz-title"><md-icon md-svg-src="assets/images/app_icon.svg"></md-icon>MEDIZENER</p>
+          </div>
+          <div md-theme="app-wht" layout="row" layout-wrap>
+            <div class="full-width" layout="row" layout-align="center" layout-wrap ng-repeat="cat in category" ng-if="$index%2==0">
+              <div class="border-right" flex="50">
+                <md-button class="md-primary menu-tab" ng-click="doctorList(category[$index].name)">
+                  <span class="white">{{category[$index].name}}</span>
+                </md-button>
+              </div>
+              <div flex="50">
+                <md-button class="md-primary menu-tab" ng-if="($index+1)<category.length" ng-click="doctorList(category[$index+1].name)">
+                  <span class="white">{{category[$index+1].name}}</span>
+                </md-button>
+              </div>
+            </div>
+          </div>
+        </md-content>
+      </md-cart>
+    </div>
+  </ion-content> 
+</ion-nav-view>

@@ -1,0 +1,53 @@
+<!-- State view -->
+<ion-nav-view name="mainContent">
+  <ion-content class="has-header roomBG">
+    <div class="list">
+      <md-content md-theme="app-theme" class="md-padding">
+        <md-card style="margin:0px!important;margin-top: 8px!important;" ng-repeat="usr in users| orderBy:'-appointment_date'">
+          <md-list style="border:1.5px dashed;border-top-style: none;border-bottom-style: none;">
+            <md-list-item class="md-3-line">
+              <md-button class="md-fab md-primary" aria-label="Use Android">
+                <img ng-src="{{usr.patient_id.profile? usr.patient_id.profile:'/assets/images/noimage.jpg'}}">
+              </md-button>
+              <div class="md-list-item-text">
+                <h3>{{usr.patient_id.prefix|titleCase}} {{usr.patient_id.first_name}} {{usr.patient_id.last_name}}</h3>
+                <h4>{{usr.appointment_date* 1000 | date:"dd-MMM-yy '@'h:mma"}}</h4>
+                <p>{{usr.patient_id.gender|titleCase}} (Age: {{calculateAge(usr.patient_id.dob)}} years)</p>
+              </div>
+            </md-list-item>
+            <h4 class="text-center">INR {{usr.fees}}/-</h4>
+            <md-list-item class="md-2-line" ng-if="usr.medication.length>0">
+              <table layout-align="center center" class="borderLine" ng-if="usr.medication.length>0" style="width: 95%;">
+                <tr class="borderLine"> 
+                  <th class="borderLine"><b>Name & Power of medicine</b></th>
+                  <th class="borderLine"><b>No of doses</b></th>
+                  <th class="borderLine"><b>Daily doses</b></th>
+                  <th class="borderLine"><b>Meals</b></th>
+                </tr>
+                <tr class="borderLine" ng-repeat="res in usr.medication">
+                  <td class="borderLine">{{res.name}}</td>
+                  <td class="borderLine">{{res.doses}}</td>
+                  <td class="borderLine">{{res.daily}}</td>
+                  <td class="borderLine">{{res.meals}}</td>
+                </tr>
+              </table>
+            </md-list-item>
+            <br/>
+            <md-list-item class="text-center" style="margin-left: 55%;">
+              <p class="text-center primary">
+              <b>{{usr.doctor_id.prefix|titleCase}} {{usr.doctor_id.first_name}} {{usr.doctor_id.last_name}}</b>
+              <br/>
+              <i>{{usr.doctor_id.specification}}</i>
+              </p>
+            </md-list-item>
+          </md-list>
+        </md-card>
+      </md-content>
+    </div>
+  </ion-content> 
+</ion-nav-view>
+<STYLE>
+.borderLine{
+    border: inset!important;
+  }
+</STYLE>

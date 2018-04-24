@@ -1,0 +1,39 @@
+<ion-slide-box on-slide-changed="slideChanged(index)">
+    <ion-slide class="md-teal-700">
+        <div class="md-min-height" layout="column" layout-align="center center" layout-margin layout-wrap>
+            <h2 class="md-display-2 md-white">Explore.</h2>
+            <h3 class="md-display-1 md-amber">
+                <i class="material-icons md-144">room_service</i>
+            </h3>
+            <p class="md-body-1 md-white md-silde">
+                Select from best rated restaurants and various payment methods - online and offline.
+            </p>
+        </div>
+    </ion-slide>
+    <ion-slide class="md-teal-700">
+        <div class="md-min-height" layout="column" layout-align="center center" layout-margin layout-wrap>
+            <h2 class="md-display-2 md-white">Discounts.</h2>
+            <h3 class="md-display-1 md-amber">
+                <i class="material-icons md-144">loyalty</i>
+            </h3>
+            <p class="md-body-1 md-white md-silde">
+                Use code : <b>LICLIQ30</b> to get flat 30% off on select restaurants 
+            </p>
+        </div>
+    </ion-slide>
+    <ion-slide class="md-teal-700">
+        <div class="md-min-height" layout="column" layout-align="center center" layout-margin layout-wrap 
+            md-theme="app-theme">
+            <h2 class="md-display-2 md-white">Localize.</h2>
+            <h3 class="md-display-1 md-amber">
+                <i class="material-icons md-144">explore</i>
+            </h3>
+            <md-button class="md-warn md-raised md-hue-2" aria-label="Use Current Location" ng-click="getLocation()">
+                <i class="material-icons">explore</i> Use my current location
+            </md-button>
+            <p class="md-body-1 md-white md-silde">
+                or <a class="md-white" href="javascript:void(0);" ng-click="gotoAddress()">click here</a> to select your location manually. 
+            </p> 
+        </div>
+    </ion-slide>
+</ion-slide-box>

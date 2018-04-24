@@ -1,0 +1,34 @@
+<ion-nav-view name="Login">
+  <ion-content>
+    <div class="list">
+      <md-content layout="column" layout-align="center center" class="md-padding" ng-cloak>
+        <div layout="row" layout-align="center" layout-wrap md-theme="app-wht">
+          <div class="full-width" layout="row" layout-align="center" layout-padding>
+            <p class="mz-title"><md-icon md-svg-src="assets/images/app_icon.svg"></md-icon>MEDIZENER</p>
+          </div>
+          <form class="login width-90" name="loginForm" novalidate>
+            <md-input-container class="md-primary md-icon-float md-block">
+              <md-icon>email</md-icon>
+              <input ng-model="user.email" name="email" type="email" placeholder="Email (Required)" ng-required="true">
+            </md-input-container>
+            <md-input-container  class="md-primary md-icon-float md-block">
+              <md-icon>lock</md-icon>
+              <input ng-model="user.password" type="password" placeholder="Password (Required)" ng-required="true">
+            </md-input-container>
+            <div layout="row" layout-align="center">
+              <md-button class="md-raised md-warn full-width nomargin" ng-click="login(user, $event)" ng-disabled="loginForm.$invalid && loginForm.$error">Login</md-button>
+            </div>
+            <div layout="row" layout-align="center" layout-padding>
+              <p class="padding">Don't have an account? <a class="signup primary" ng-click="newAccount()">Get started!</a></p>
+            </div>
+            <div layout="row" layout-align="center">
+              <md-button class="md-fab md-mini ion-social-facebook" aria-label="Facebook"></md-button>
+              <md-button class="md-fab md-mini ion-social-google" aria-label="Google"></md-button>
+              <md-button class="md-fab md-mini ion-social-twitter" aria-label="Twitter"></md-button>
+            </div>
+          </form>
+        </div>
+      </md-content>
+    </div>
+  </ion-content>
+</ion-nav-view>

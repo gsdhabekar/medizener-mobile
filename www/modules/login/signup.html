@@ -1,0 +1,43 @@
+<ion-nav-view name="Signup">
+  <ion-content class="md-padding" ng-cloak>
+    <div class="list">
+      <div class="full-height" layout="column" layout-align="center center" layout-padding md-theme="app-wht">
+        <form class="signup" name="signupForm" novalidate>
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>person</md-icon>
+            <input ng-model="user.first_name" name="first_name" type="text" placeholder="First Name (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>person</md-icon>
+            <input ng-model="user.last_name" name="last_name" type="text" placeholder="Last Name (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>email</md-icon>
+            <input ng-model="user.email" name="email" type="email" placeholder="Email (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>lock</md-icon>
+            <input ng-model="user.password" name="password" type="password" placeholder="Password (required)" ng-minlength="6" ng-maxlength="20" name="password" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>call</md-icon>
+            <input ng-model="user.phone_number" name="phone_number" ng-pattern="/^[789]\d{9}$/" type="text" placeholder="Phone Number (required)" name="phone_number" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>local_hospital</md-icon>
+            <label>Specialization</label>
+            <md-select ng-model="user.specification" ng-required="true">
+              <md-option ng-repeat="c in category" ng-value="c.name">
+                {{c.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <div layout="row" layout-align="center">
+            <md-button class="md-raised md-warn" ng-click="signup(user, $event)" ng-disabled="signupForm.$invalid && signupForm.$error">Submit</md-button>
+            <md-button class="md-primary" ng-click="cancel()">Cancel</md-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ion-content>
+</ion-nav-view>

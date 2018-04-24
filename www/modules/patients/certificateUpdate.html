@@ -1,0 +1,146 @@
+<ion-nav-view name="certificateUpdate">
+  <ion-content class="has-header">
+    <div class="md-menu-demo menudemoMenuPositionModes" ng-cloak="" ng-app="MyApp">
+      <md-card>
+        <div class="menu-demo-container" layout-align="center center" layout="column">
+          <h5 class="md-title">Profile</h5>
+          <md-button class="md-fab md-fab-top-center center" ngf-select ngf-keep="true" ngf-multiple="true" ng-model="ctrl.files4" aria-label="Upload">
+             <!-- <md-icon md-svg-src="/assets/images/icons/ic_photo_24px.svg" style="width: 24px; height: 24px;"></md-icon> -->
+             <md-icon style="width: 24px; height: 24px;">image</md-icon>
+          </md-button>
+          <!-- <p>files model: {{ ctrl.files | json }}</p> -->
+          <p ngf-src="ctrl.files4[0]">Preview:</p>
+          <img ngf-src="ctrl.files4[0]" style="width: 80%; height: 150px;"/>
+          <img ng-if="!ctrl.files4[0]" ngf-src="user.profile" style="width: 80%; height: 150px;">
+          <md-content ngf-src="ctrl.files4[0]">
+            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+              <md-button class="md-raised md-primary" ng-click="uploadProfile(ctrl)">Submit</md-button>
+              <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+            </section>
+          </md-content>
+        </div>
+        <br/>
+      </md-card>
+      <md-card>
+        <div class="menu-demo-container" layout-align="center center" layout="column">
+          <h5 class="md-title">Passing Degree Certificate</h5>
+          <md-button class="md-fab md-fab-top-center center" ngf-select ngf-keep="true" ngf-multiple="true" ng-model="ctrl.files1" aria-label="Upload" ng-disabled="user.verified?true:false">
+             <!-- <md-icon md-svg-src="/assets/images/icons/ic_photo_24px.svg" style="width: 24px; height: 24px;"></md-icon> -->
+             <md-icon style="width: 24px; height: 24px;">image</md-icon>
+          </md-button>
+          <!-- <p>files model: {{ ctrl.files | json }}</p> -->
+          <p ngf-src="ctrl.files1[0]">Preview:</p>
+          <img ngf-src="ctrl.files1[0]" style="width: 80%; height: 150px;"/>
+          <img ng-if="!ctrl.files1[0]" ngf-src="user.degree_certificate" style="width: 80%; height: 150px;">
+          <md-content ngf-src="ctrl.files1[0]">
+            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+              <md-button class="md-raised md-primary" ng-click="uploadDegree(ctrl)">Submit</md-button>
+              <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+            </section>
+          </md-content>
+        </div>
+        <br/>
+      </md-card>
+      <md-card>
+        <div class="menu-demo-container" layout-align="center center" layout="column">
+          <h4 class="md-title">Medical Registration Certificate</h4>
+          <md-button class="md-fab md-primary md-fab-top-center center" ngf-select ngf-keep="true" ngf-multiple="true" ng-model="ctrl.files2" aria-label="Upload" ng-disabled="user.verified?true:false">
+             <!-- <md-icon md-svg-src="/assets/images/icons/ic_photo_24px.svg" style="width: 24px; height: 24px;"></md-icon> -->
+             <md-icon style="width: 24px; height: 24px;">image</md-icon>
+          </md-button>
+          <!-- <p>files model: {{ ctrl.files | json }}</p> -->
+          <p ngf-src="ctrl.files2[0]">Preview:</p>
+          <img ngf-src="ctrl.files2[0]" style="width: 80%; height: 150px;"/>
+          <img ng-if="!ctrl.files2[0]" ngf-src="user.medical_reg_certificate" style="width: 80%; height: 150px;">
+          <md-content ngf-src="ctrl.files2[0]">
+            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+              <md-button class="md-raised md-primary" ng-click="uploadCertificate(ctrl)">Submit</md-button>
+              <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+            </section>
+          </md-content>
+        </div>
+        <br/>
+      </md-card>
+      <md-card>
+        <div class="menu-demo-container" layout-align="center center" layout="column">
+          <h4 class="md-title">Business Card</h4>
+          <md-button class="md-fab md-warn md-fab-top-center center" ngf-select ngf-keep="true" ngf-multiple="true" ng-model="ctrl.files3" aria-label="Upload">
+             <!-- <md-icon md-svg-src="/assets/images/icons/ic_photo_24px.svg" style="width: 24px; height: 24px;"></md-icon> -->
+             <md-icon style="width: 24px; height: 24px;">image</md-icon>
+          </md-button>
+          <!-- <p>files model: {{ ctrl.files | json }}</p> -->
+          <p ngf-src="ctrl.files3[0]">Preview:</p>
+          <img ngf-src="ctrl.files3[0]" style="width: 80%; height: 150px;"/>
+          <img ng-if="!ctrl.files3[0]" ngf-src="user.business_card" style="width: 80%; height: 150px;">
+          <md-content ngf-src="ctrl.files3[0]">
+            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+              <md-button class="md-raised md-primary" ng-click="uploadBusinessCard(ctrl)">Submit</md-button>
+              <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+            </section>
+          </md-content>
+        </div>
+        <br/>
+      </md-card>
+      <!--   <div class="menus" layout-wrap="" layout="row" layout-fill="" layout-align="space-between center">
+          <div layout="column" layout-fill flex-sm="100" layout-align="center center">
+            <md-menu>
+              <md-button class="md-primary md-raised" aria-label="Open demo menu" class="" ng-click="$mdOpenMenu($event)">
+                Dropdown with Upload
+              </md-button>
+              <md-menu-content width="6">
+                <md-menu-item>
+                  <md-button
+                    ngf-select 
+                    ngf-keep="true"         
+                    ngf-multiple="true" ng-model="ctrl.files"
+                    aria-label="Upload">
+                    Upload Files
+                  </md-button>
+                </md-menu-item>
+              </md-menu-content>
+            </md-menu>
+          </div>
+        </div> -->
+    </div>
+    <br/>
+    <br/>
+  </ion-content>
+</ion-nav-view>
+  <!-- <div class="md-menu-demo menudemoMenuPositionModes" ng-cloak="" ng-app="MyApp">
+ <div class="menu-demo-container" layout-align="center center" layout="column">
+    <h2 class="md-title">ngMaterial + ngFileUpload</h2>
+    <hr>
+      <md-button
+      class="md-primary md-raised"
+      ngf-select 
+      ngf-keep="true"         
+      ngf-multiple="true" ng-model="ctrl.files"
+      aria-label="Upload">
+      Upload Files
+    </md-button>
+
+    <p>files model: {{ ctrl.files | json }}</p>
+    <p>preview:</p>
+    <img ngf-src="ctrl.files[0]" />
+    
+    <div class="menus" layout-wrap="" layout="row" layout-fill="" layout-align="space-between center">
+      <div layout="column" layout-fill flex-sm="100" layout-align="center center">
+        <md-menu>
+          <md-button class="md-primary md-raised" aria-label="Open demo menu" class="" ng-click="$mdOpenMenu($event)">
+            Dropdown with Upload
+          </md-button>
+          <md-menu-content width="6">
+            <md-menu-item>
+              <md-button
+                ngf-select 
+                ngf-keep="true"         
+                ngf-multiple="true" ng-model="ctrl.files"
+                aria-label="Upload">
+                Upload Files
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </div>
+    </div>
+  </div> -->

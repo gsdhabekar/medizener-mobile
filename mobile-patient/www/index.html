@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="lib/angular-material/angular-material.css" rel="stylesheet">
+    <link href="assets/styles/style.css" rel="stylesheet">
+    <!-- IONIC MATERIAL ICON-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- ionic/angularjs js -->
+        <script src="lib/ionic/js/ionic.bundle.js"></script>
+        <script src="lib/angular-resource/angular-resource.min.js"></script>
+        <script src="lib/angular-aria/angular-aria.min.js"></script>
+        <script src="lib/angular-material/angular-material.min.js"></script>
+        <script src="lib/angular-fileupload/ng-file-upload.js"></script>
+        <script src="lib/oclazyload/dist/ocLazyLoad.min.js"></script>
+        <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+        <script src="cordova.js"></script>
+        <!-- Date Time Picker js -->
+        <script src="lib/api-check/dist/api-check.js"></script>
+        <script src="lib/angular-formly/dist/formly.js"></script>
+        <script src="lib/angular-formly-templates-ionic/dist/angular-formly-templates-ionic.js"></script>
+        <!-- your app's js -->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&libraries=places"></script>
+        <script src="app.js"></script>
+        <script src="service.js"></script>
+        <script src="routes/routes.js"></script>
+        <script src="config/themes.js"></script>
+        <script src="lib/ngStorage/ngStorage.min.js"></script>
+        <script src="lib/artyom.min.js"></script>
+    </head>
+    <body ng-app="Medizener">
+        <div ng-include="'views/header.html'"></div>
+        <ion-nav-view></ion-nav-view>
+    </body>
+</html>

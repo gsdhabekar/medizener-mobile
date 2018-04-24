@@ -1,0 +1,213 @@
+<div ng-controller="navCtrl" md-swipe-left="manageLSwipe()" md-swipe-right="manageRSwipe()">
+  <ion-header-bar ng-show="showHeader" align-title="left" class="bar-positive">
+    <div class="buttons">
+      <md-button class="width-36 nopadding nomargin" ng-click="openNav()" menu-toggle="left">
+        <md-icon class="material-icons md-white">menu</md-icon>
+      </md-button>
+      <md-button class="width-36 nopadding nomargin" ng-click="homeClick()">
+        <md-icon class="material-icons md-white">home</md-icon>
+      </md-button>
+    </div>
+    <h1 class="title"></h1>
+    <div class="buttons">
+      <md-button class="width-36 nopadding nomargin" ng-click="openNavRight()">
+        <md-icon class="material-icons md-white">notifications</md-icon>
+      </md-button>
+    </div>
+  </ion-header-bar>
+  <!-- Main Window Side menu -->
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-theme="app-theme">
+    <div layout="column" flex layout-fill ng-cloak>
+      <md-toolbar class="md-primary" md-scroll-shrink ng-click="redirectPage('myProfile')">
+        <div class="md-toolbar-tools">
+          <div class="full-width headerIcon" layout="row" layout-align="start center">
+            <div class="profile" ng-if="user.profile || ctrl.files4[0]">
+              <img ngf-src="user.profile || ctrl.files4[0]"/>
+            </div>
+            <!-- <img ngf-src="user.profile" /> -->
+            <p class="md-subhead">
+              <i ng-if="!user.profile" class="material-icons padding-4x">account_circle</i>
+              <span>{{user.first_name}} {{user.last_name}}</span>
+            </p>
+          </div>
+        </div>
+      </md-toolbar>
+      <md-list layout="column">
+        <md-subheader class="md-no-sticky" ng-click="redirectPage('updateData')">My Account</md-subheader>
+        <md-list-item ng-click="redirectPage('changePassword')">
+          <md-icon class="material-icons primary">lock_open</md-icon>
+          <p>Change Password</p>
+        </md-list-item>
+        <md-subheader class="md-no-sticky">Information</md-subheader>
+        <md-divider></md-divider>
+        <md-list-item ng-click="redirectPage('settings')">
+          <md-icon class="material-icons primary">settings</md-icon>
+          <p>Setting</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item>
+          <md-icon class="material-icons primary">bookmark</md-icon>
+          <p>Terms and Conditions</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-click="redirectPage('app.help')">
+          <md-icon class="material-icons primary">help</md-icon>
+          <p>Help & About Us</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item>
+          <md-icon class="material-icons primary">share</md-icon>
+          <p>Share this App</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item>
+          <md-icon class="material-icons primary">star_rate</md-icon>
+          <p>Rate this App</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-click="logout()">
+          <md-icon class="material-icons primary">power_settings_new</md-icon>
+          <p> Log Out </p>
+        </md-list-item>
+      </md-list>
+    </div>
+  </md-sidenav>
+  <!-- Main Window Side menu -->
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-theme="app-theme">
+   <div layout="column" flex layout-fill ng-cloak>
+    <md-toolbar md-scroll-shrink>
+      <md-toolbar class="md-primary" ng-click="redirectPage('myProfile')">
+        <div class="md-toolbar-tools">
+          <img ngf-src="user.profile" style="border-radius: 50%;height: 40px;width: 20%;">
+          <span class="md-subhead">
+            <i ng-if="!user.profile"class="material-icons">account_circle</i>
+            <span>  &nbsp;&nbsp;&nbsp;&nbsp;{{user.first_name}}  {{user.last_name}}</span>
+          </span>
+        </div>
+      </md-toolbar>
+    </md-toolbar>
+    <md-content style="height: 600px;" md-theme="altTheme">
+    <section>
+        <md-list layout="column">
+          <md-list-item class="primary" ng-click="redirectPage('updateData')">
+            <md-icon class="material-icons primary">account_circle</md-icon>
+            <p>Profile</p>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item class="primary" ng-click="redirectPage('changePassword')">
+            <md-icon class="material-icons primary">lock_open</md-icon>
+            <p>Change Password</p>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item class="primary" ng-click="redirectPage('settings')">
+            <md-icon class="material-icons primary">settings</md-icon>
+            <p>Setting</p>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item class="primary">
+            <md-icon class="material-icons primary">local_hospital</md-icon>
+            <p>Health Camp</p>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item class="primary" ng-click="redirectPage('app.help')">
+            <md-icon class="material-icons primary">help</md-icon>
+            <p>Help</p>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item class="primary">
+            <md-icon class="material-icons primary">settings</md-icon>
+            <p>Terms and Conditions</p>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item class="primary">
+            <md-icon class="material-icons primary">settings</md-icon>
+            <p>About Us</p>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item class="primary">
+            <md-icon class="material-icons primary">share</md-icon>
+            <p>Share this App</p>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item class="primary">
+            <md-icon class="material-icons primary">star_rate</md-icon>
+            <p>Rate this App</p>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item class="primary" ng-click="logout()">
+            <md-icon class="material-icons primary">power_settings_new</md-icon>
+            <p> Log Out </p>
+            </md-list-item>
+        </md-list>
+      </section>
+    </md-content>
+    </div>
+  </md-sidenav>
+  <!-- Notifications -->
+  <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-theme="app-theme">
+    <div layout="column" flex layout-fill ng-cloak>
+    <md-toolbar md-scroll-shrink>
+    <div class="md-toolbar-tools"><p class="md-subhead"><i class="material-icons">notifications</i> Fast first aid tips</div>
+    </md-toolbar>
+    <md-content style="height: 600px;" md-theme="altTheme">
+    <section>
+      <md-subheader class="md-primary">First aid for someone who’s unresponsive and not breathing</md-subheader>
+      <md-list layout="column" layout-padding>
+      <md-list-item class="md-3-line">
+      <div class="md-list-item-text">
+        <h3>The delivery of <br> chest compressions</h3>
+        <p>
+          1. Check breathing by tilting their head backwards and looking and feeling for breaths.
+          <br/>2. Call 999 as soon as possible, or get someone else to do it.
+          <br/>3. Push firmly downwards in the middle of the chest and then release.
+          <br/>4. Push at a regular rate until help arrives.
+        </p>
+      </div>
+      </md-list-item>
+      </md-list>
+    </section>
+    <section>
+      <md-subheader class="md-warn">First aid for choking</md-subheader>
+      <md-list layout="column" layout-padding>
+      <md-list-item class="md-3-line">
+      <div class="md-list-item-text">
+        <h3>The delivery of back blows</h3>
+        <p>
+          1. Hit them firmly on their back between the shoulder blades to dislodge the object.
+          <br/>2. If necessary, call 999 or get someone else to do it.
+        </p>
+      </div>
+      </md-list-item>
+      </md-list>
+    </section>
+    <section>
+      <md-subheader>First aid for someone who’s bleeding heavily</md-subheader>
+      <md-list layout="column" layout-padding>
+      <md-list-item class="md-3-line">
+      <div class="md-list-item-text">
+        <h3>Put pressure on the wound</h3>
+        <p>
+          1. Put pressure on the wound with whatever is available to stop or slow down the flow of blood.
+          <br/>2. As soon as possible, call 999 or get someone else to do it.
+          <br/>3. Keep pressure on the wound until help arrives.
+        </p>
+      </div>
+      </md-list-item>
+      </md-list>
+    </section>
+    <section>
+      <md-subheader class="md-accent">First aid for a heart attack</md-subheader>
+      <md-list layout="column" layout-padding>
+      <md-list-item class="md-3-line">
+      <div class="md-list-item-text">
+        <h3>Ensure they are sitting <br/>and call 999 immediately</h3>
+        <p>1. The person may have persistent, vice-like chest pain, which may spread to their arms, neck, jaw, back or stomach. <br/> 2. Call 999 immediately or get someone else to do it. <br/> 3. Make sure they are in a position that is comfortable for them ( e.g. sit them on the floor, leaning against a wall or chair ). <br/> 4. Give them constant reassurance while waiting for the ambulance.
+        </p>
+      </div>
+      </md-list-item>
+      </md-list>
+    </section>
+    </md-content>
+  </div>
+  </md-sidenav>
+</div>

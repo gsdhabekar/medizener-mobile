@@ -1,0 +1,121 @@
+<div ng-controller="navCtrl" md-swipe-left="manageLSwipe()" md-swipe-right="manageRSwipe()">
+  <ion-header-bar ng-show="showHeader" align-title="left" class="bar-positive">
+    <div class="buttons">
+      <md-button class="width-36 nopadding nomargin" ng-click="openNav()" menu-toggle="left">
+        <md-icon class="material-icons md-white">menu</md-icon>
+      </md-button>
+      <md-button class="width-36 nopadding nomargin" ng-click="homeClick()">
+        <md-icon class="material-icons md-white">home</md-icon>
+      </md-button>
+    </div>
+    <h1 class="title"></h1>
+    <div class="buttons">
+      <md-button class="width-36 nopadding nomargin" ng-click="openNavRight()">
+        <md-icon class="material-icons md-white">notifications</md-icon>
+      </md-button>
+    </div>
+  </ion-header-bar>
+  <!-- Main Window Side menu -->
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-theme="app-theme">
+    <div class="list" layout="column" flex layout-fill ng-cloak>
+      <md-toolbar class="md-primary" md-scroll-shrink ng-click="redirectPage('myProfile')">
+        <div class="md-toolbar-tools">
+          <div class="full-width headerIcon" layout="row" layout-align="start center">
+            <div class="profile" ng-if="user.profile || ctrl.files4[0]">
+              <img ngf-src="user.profile || ctrl.files4[0]"/>
+            </div>
+            <!-- <img ngf-src="user.profile" /> -->
+            <p class="md-subhead">
+              <i ng-if="!user.profile" class="material-icons padding-4x">account_circle</i>
+              <span>{{user.first_name}} {{user.last_name}}</span>
+            </p>
+          </div>
+        </div>
+      </md-toolbar>
+      <md-list layout="column">
+        <md-subheader class="md-no-sticky" ng-click="redirectPage('updateData')">My Account</md-subheader>
+        <md-list-item ng-click="redirectPage('viewRoom')">
+          <md-icon class="material-icons primary">room</md-icon>
+          <p>Room Information</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-click="redirectPage('AppointmentType')">
+          <md-icon class="material-icons primary">watch_letter</md-icon>
+          <p>Available Time</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-click="redirectPage('feesUpdate')">
+          <md-icon class="material-icons primary">attach_money</md-icon>
+          <p>Fees</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-click="redirectPage('certificateUpdate')">
+          <md-icon class="material-icons primary">note</md-icon>
+          <p>Certificate</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-click="redirectPage('changePassword')">
+          <md-icon class="material-icons primary">lock_open</md-icon>
+          <p>Change Password</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-click="redirectPage('addressType')">
+          <md-icon class="material-icons primary">place</md-icon>
+          <p>Address Type</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-click="redirectPage('appointmentList')">
+          <md-icon class="material-icons primary">check_circle</md-icon>
+          <p>Patient Check in/out</p>
+        </md-list-item>
+        <md-subheader class="md-no-sticky">Information</md-subheader>
+        <md-divider></md-divider>
+        <md-list-item ng-click="redirectPage('settings')">
+          <md-icon class="material-icons primary">settings</md-icon>
+          <p>Setting</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item>
+          <md-icon class="material-icons primary">bookmark</md-icon>
+          <p>Terms and Conditions</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-click="redirectPage('app.help')">
+          <md-icon class="material-icons primary">help</md-icon>
+          <p>Help & About Us</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item>
+          <md-icon class="material-icons primary">share</md-icon>
+          <p>Share this App</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item>
+          <md-icon class="material-icons primary">star_rate</md-icon>
+          <p>Rate this App</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-click="logout()">
+          <md-icon class="material-icons primary">power_settings_new</md-icon>
+          <p> Log Out </p>
+        </md-list-item>
+      </md-list>
+    </div>
+  </md-sidenav>
+  <!-- Notifications -->
+  <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-theme="app-theme">
+    <md-toolbar md-scroll-shrink>
+      <div class="md-toolbar-tools">
+        <p class="md-subhead"><i class="material-icons">notifications</i> Notifications</p>
+      </div>
+    </md-toolbar>
+    <md-list layout="column" layout-padding>
+      <md-list-item class="md-3-line">
+        <div class="md-list-item-text">
+          <h3>The delivery of
+          <p>Message body</p>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-sidenav>
+</div>

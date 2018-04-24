@@ -1,0 +1,120 @@
+<script type="text/ng-template" id="inputDatePicker.html">
+  <ion-item class="item-icon-left" ng-click="to.onclick(model,options)">
+    {{ model[options.key] | date : to.dateFormat }} (DOB)
+    <i class="icon ion-ios-calendar-outline"></i>
+  </ion-item>
+</script>
+<!-- State view -->
+<ion-nav-view name="updateData">
+  <ion-content class="has-header">
+    <div class="list">
+      <md-card class="padding-16x" md-theme="app-theme">
+        <form name="updateDoctor">
+            <md-input-container class="md-icon-float md-block">
+              <!-- <md-icon md-svg-src="/assets/images/icons/ic_person_24px.svg" class="name"></md-icon> -->
+              <md-icon>person</md-icon>
+              <input ng-model="user.first_name" type="text" placeholder="Firstname (required)" ng-required="true" ng-disabled="user.verified?true:false">
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block">
+              <!-- <md-icon md-svg-src="/assets/images/icons/ic_person_24px.svg" class="name"></md-icon> -->
+              <md-icon>person</md-icon>
+              <input ng-model="user.last_name" type="text" placeholder="Lastname (required)" ng-required="true" ng-disabled="user.verified?true:false">
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block">
+              <!-- <md-icon md-svg-src="/assets/images/icons/ic_phone_24px.svg"></md-icon> -->
+              <md-icon>call</md-icon>
+              <input ng-model="user.phone_number" ng-pattern="/^[789]\d{9}$/" type="text" placeholder="Phone Number (required)" name="phone_number" ng-required="true" ng-disabled="user.verified?true:false">
+              <label ng-show="updateDoctor.phone_number.$error.pattern">Please enter valid number</label>
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block">
+              <!-- <md-icon md-svg-src="/assets/images/icons/ic_email_24px.svg" class="email"></md-icon> -->
+              <md-icon>email</md-icon>
+              <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true" ng-disabled="true">
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block">
+              <!-- <md-icon md-svg-src="/assets/images/icons/gender.svg"></md-icon> -->
+              <md-icon>wc</md-icon>
+              <label>Gender (required)</label>
+              <md-select ng-model="user.gender" ng-required="true" ng-disabled="user.verified?true:false">
+                <md-option ng-repeat="gen in gender" value="{{gen.abbrev}}">
+                  {{gen.abbrev}}
+                </md-option>
+              </md-select>
+            </md-input-container> 
+            <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/blood.svg" style="display:inline-block;"></md-icon> -->
+              <md-icon>opacity</md-icon>
+              <label>Blood Group (required)</label>
+              <md-select ng-model="user.blood_group" ng-required="true">
+                <md-option ng-repeat="bld in blood" value="{{bld.abbrev}}">
+                  {{bld.abbrev}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/stethoscope.svg" style="display:inline-block;"></md-icon> -->
+              <md-icon>local_hospital</md-icon>
+              <label>Specialization (required)</label>
+              <md-select ng-model="user.specification" ng-required="true" ng-disabled="user.verified?true:false">
+                <md-option ng-repeat="c in category" ng-value="c.name">
+                  {{c.name}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <div class="md-block" ng-disabled="user.verified?true:false">
+              <formly-form model="formData" fields="formFields" form="mainInputForm"></formly-form>
+            </div>
+            <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/experiment-results.svg"></md-icon> -->
+              <md-icon>work</md-icon>
+              <input ng-model="user.experience" type="text" placeholder="Experience (required)" ng-required="true" ng-disabled="user.verified?true:false">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <md-icon>schedule</md-icon>
+              <input ng-model="user.interval_time" type="text" placeholder="Interval Time (required)" ng-required="true" ng-disabled="user.verified?true:false">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/health-certificate.svg"></md-icon> -->
+              <md-icon>aspect_ratio</md-icon>
+              <input ng-model="user.grade" type="text" placeholder="Medical Certificate No (required)" ng-required="true" ng-disabled="user.verified?true:false">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <md-icon>place</md-icon>
+              <!-- <md-icon md-svg-src="/assets/images/icons/hospital.svg"></md-icon> -->
+              <input ng-model="user.hospital_name" type="text" placeholder="Hospital Name (required)" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/ic_place_24px.svg"></md-icon> -->
+              <md-icon>place</md-icon>
+              <input ng-model="user.hospital_address1" type="text" placeholder="Hospital Address1 (required)" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/ic_place_24px.svg"></md-icon> -->
+              <md-icon>place</md-icon>
+              <input ng-model="user.hospital_address2" type="text" placeholder="Hospital Address2 (required)" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/ic_place_24px.svg"></md-icon> -->
+              <md-icon>place</md-icon>
+              <input ng-model="user.hospital_city" type="text" placeholder="Hospital City (required)" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/ic_place_24px.svg"></md-icon> -->
+              <md-icon>place</md-icon>
+              <input ng-model="user.hospital_state" type="text" placeholder="Hospital State (required)" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-icon md-svg-src="/assets/images/icons/ic_place_24px.svg"></md-icon> -->
+              <md-icon>place</md-icon>
+              <input ng-model="user.hospital_pincode" ng-pattern="/^[0-9]{6,6}$/" type="text" placeholder="Hospital Pincode (required)" name="pincode" ng-required="true">
+              <label ng-show="updateDoctor.pincode.$error.pattern">Please enter valid number</label>
+            </md-input-container>
+            <section layout="row" layout-align="center center" layout-wrap>
+              <md-button class="md-raised md-primary" ng-click="update(user, $event)" ng-disabled="updateDoctor.$invalid && updateDoctor.$error">Update</md-button>
+              <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+            </section>
+        </form>
+      </md-card>
+    </div>
+  </ion-content>
+</ion-nav-view>

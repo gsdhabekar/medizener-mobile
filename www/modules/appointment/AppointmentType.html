@@ -1,0 +1,117 @@
+<script type="text/ng-template" id="inputDatePicker.html">
+  <ion-item class="item-icon-left" ng-click="to.onclick(model,options)">
+    {{ model[options.key] | date:'HH : mm' }}  (Time)
+    <i class="icon ion-ios-calendar-outline"></i>
+  </ion-item>
+</script>
+<!-- State view -->
+<ion-nav-view name="addAppointment">
+  <ion-content class="has-header">
+    <div class="list">
+      <div class="list">
+      <md-card class="padding-16x" md-theme="app-theme">
+        <form name="addAppointment">
+          <md-input-container class="md-block" flex-gt-sm>
+            <div flex-gt-sm="50">
+              <md-checkbox class="md-primary" ng-disabled="user.verified?true:false" ng-model="appointment.morning" aria-label="Checkbox 1">
+                Morning Time Available   <!-- {{ appointment.morning }} -->
+              </md-checkbox>
+            </div>
+          </md-input-container>
+          <div class="md-block" ng-if="appointment.morning" >
+            <formly-form model="formData" fields="morningFields" form="mainInputForm" ng-disabled="user.verified?true:false"></formly-form>
+          </div>
+          <md-input-container class="md-block" flex-gt-sm ng-if="appointment.morning">
+            <md-icon>place</md-icon>
+            <label>Address Type</label>
+            <md-select ng-model="morningTime.address_type" ng-required="true" ng-change="addressType('morningTime',morningTime)">
+              <md-option ng-repeat="add in address" ng-value="add.address_type">
+                {{add.address_type}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <div flex-gt-sm="50">
+              <md-checkbox ng-disabled="user.verified?true:false" ng-model="appointment.regular" aria-label="Checkbox 1">
+                Regular Time Available   <!-- {{ appointment.regular }} -->
+              </md-checkbox>
+            </div>
+          </md-input-container>
+          <div class="md-block" ng-if="appointment.regular">
+            <formly-form model="formData" fields="regularFields" form="mainInputForm" ng-disabled="user.verified?true:false"></formly-form>
+          </div>
+          <md-input-container class="md-block" flex-gt-sm ng-if="appointment.regular">
+            <md-icon>place</md-icon>
+            <label>Address Type</label>
+            <md-select ng-model="regularTime.address_type" ng-required="true" ng-change="addressType('regularTime',regularTime)">
+              <md-option ng-repeat="add in address" ng-value="add.address_type">
+                {{add.address_type}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <div flex-gt-sm="50">
+              <md-checkbox ng-disabled="user.verified?true:false" ng-model="appointment.evening" aria-label="Checkbox 1">
+                Evening Time Available   <!-- {{ appointment.evening }} -->
+              </md-checkbox>
+            </div>
+          </md-input-container>
+          <div class="md-block" ng-if="appointment.evening">
+            <formly-form model="formData" fields="eveningFields" form="mainInputForm" ng-disabled="user.verified?true:false"></formly-form>
+          </div>
+          <md-input-container class="md-block" flex-gt-sm ng-if="appointment.evening">
+            <md-icon>place</md-icon>
+            <label>Address Type</label>
+            <md-select ng-model="eveningTime.address_type" ng-change="addressType('eveningTime',eveningTime)" ng-required="true">
+              <md-option ng-repeat="add in address" ng-value="add.address_type">
+                {{add.address_type}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <div flex-gt-sm="50">
+              <md-checkbox ng-disabled="user.verified?true:false" ng-model="appointment.mr_consultant" aria-label="Checkbox 1">
+                MR Consultant Time Available   <!-- {{ appointment.mr_consultant }} -->
+              </md-checkbox>
+            </div>
+          </md-input-container>
+          <div class="md-block" ng-if="appointment.mr_consultant">
+            <formly-form model="formData" fields="mr_consultantFields" form="mainInputForm" ng-disabled="user.verified?true:false"></formly-form>
+          </div>
+          <md-input-container class="md-block" flex-gt-sm ng-if="appointment.mr_consultant">
+            <md-icon>place</md-icon>
+            <label>Address Type</label>
+            <md-select ng-model="mr_consultantTime.address_type" ng-required="true" ng-change="addressType('mr_consultantTime',mr_consultantTime)">
+              <md-option ng-repeat="add in address" ng-value="add.address_type">
+                {{add.address_type}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <div flex-gt-sm="50">
+              <md-checkbox ng-disabled="user.verified?true:false" ng-model="appointment.online_consultant" aria-label="Checkbox 1">
+                Online Consultant Time Available   <!-- {{ appointment.online_consultant }} -->
+              </md-checkbox>
+            </div>
+          </md-input-container>
+          <div class="md-block" ng-if="appointment.online_consultant">
+            <formly-form model="formData" fields="online_consultantFields" form="mainInputForm" ng-disabled="user.verified?true:false"></formly-form>
+          </div>
+          <md-input-container class="md-block" flex-gt-sm ng-if="appointment.online_consultant">
+            <md-icon>place</md-icon>
+            <label>Address Type</label>
+            <md-select ng-model="online_consultantTime.address_type" ng-change="addressType('online_consultantTime',online_consultantTime)" ng-required="true">
+              <md-option ng-repeat="add in address" ng-value="add.address_type">
+                {{add.address_type}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <div layout="row" layout-align="center center" layout-wrap>
+            <md-button class="md-raised md-primary" ng-click="add(appointment,$event);" ng-disabled="addAppointment.$invalid && addAppointment.$error">Add</md-button>
+            <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+          </div>
+        </form>
+      </md-card>
+    </div>
+  </ion-content>
+</ion-nav-view>

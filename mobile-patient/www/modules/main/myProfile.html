@@ -1,0 +1,77 @@
+<script type="text/ng-template" id="inputDatePicker.html">
+  <ion-item class="item-icon-left" ng-click="to.onclick(model,options)">
+    {{ model[options.key] | date : to.dateFormat }} (DOB)
+    <i class="icon ion-ios-calendar-outline"></i>
+  </ion-item>
+</script>
+<ion-nav-view name="myProfile">
+  <ion-content class="has-header padding-16x">
+    <div class="md-teal-bg padding" md-theme="app-wht" layout="column" layout-align="center center">
+      <div class="profile" ng-if="user.profile || ctrl.files4[0]">
+        <img ngf-src="user.profile || ctrl.files4[0]"/>
+      </div>
+      <div ng-if="!user.profile && !ctrl.files4[0]">
+        <i class="material-icons md-white md-72">person</i>
+      </div>
+      <div class="padding-4x" layout="row" layout-align="center">
+        <md-button class="width-36 nomargin" ngf-select ngf-keep="true" ngf-multiple="true" 
+          ng-model="ctrl.files4" aria-label="Upload">
+          <i class="material-icons md-white">edit</i>
+        </md-button>
+        <md-button ngf-src="ctrl.files4[0]" class="width-36 nomargin" ng-click="uploadProfile(ctrl)">
+          <i class="material-icons md-white">save</i>
+        </md-button>
+        <md-button ngf-src="ctrl.files4[0]" class="width-36 nomargin" ng-click="cancelProfile()">
+          <i class="material-icons md-white">cancel</i>
+        </md-button>
+      </div>
+    </div>
+    <div md-theme="app-theme" class="md-white-bg" layout="column" layout-align="center" layout-padding>
+      <form name="myProfile" novalidate>
+        <md-input-container class="md-icon-float md-block">
+          <md-icon>person</md-icon>
+          <input ng-model="user.first_name" type="text" placeholder="Firstname (required)" ng-required="true">
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block">
+          <md-icon>person</md-icon>
+          <input ng-model="user.last_name" type="text" placeholder="Lastname (required)" ng-required="true">
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block">
+          <md-icon>call</md-icon>
+          <input ng-model="user.phone_number" ng-pattern="/^[789]\d{9}$/" type="text" placeholder="Phone Number (required)" name="phone_number" ng-required="true">
+          <label ng-show="myProfile.phone_number.$error.pattern">Please enter valid number</label>
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block">
+          <md-icon>email</md-icon>
+          <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true" ng-disabled="true">
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block">
+          <md-icon>wc</md-icon>
+          <label>Gender (required)</label>
+          <md-select ng-model="user.gender" ng-required="true">
+            <md-option ng-repeat="gen in gender" value="{{gen.abbrev}}">
+              {{gen.abbrev}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block">
+          <md-icon>opacity</md-icon>
+          <label>Blood Group (required)</label>
+          <md-select ng-model="user.blood_group" ng-required="true">
+            <md-option ng-repeat="bld in blood" value="{{bld.abbrev}}">
+              {{bld.abbrev}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <div layout="row">
+          <formly-form model="formData" fields="formFields" form="mainInputForm"></formly-form>
+        </div>
+        <div layout="row" layout-align="center" layout-padding>
+          <md-button class="md-raised md-primary nopadding" ng-click="update(user,$event);" 
+            ng-disabled="myProfile.$invalid && myProfile.$error">Update</md-button>
+          <md-button class="md-primary nopadding" ng-click="cancel()">Cancel</md-button>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+</ion-nav-view>

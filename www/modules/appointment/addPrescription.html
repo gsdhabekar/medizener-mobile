@@ -1,0 +1,110 @@
+  <!-- State view -->
+<ion-nav-view name="viewStaff" ng-controller="addPrescriptionCtrl as spc">
+    <ion-content class="has-header roomBG">
+      <div class="list">
+        <md-card>
+          <md-content class="md-padding" md-theme="app-theme">
+            <md-card>
+              <md-list>
+                <md-list-item class="md-2-line mdLine">
+                  <div class="md-list-item-text">
+                    <h3>&nbsp;<b>{{user.patient_id.prefix}} {{user.patient_id.first_name}} {{user.patient_id.last_name}}</b></h3>
+                    <h6>&nbsp;<md-icon>wc</md-icon>{{user.patient_id.gender}} (Age: {{calculateAge(user.patient_id.dob)}} years)</h6>
+                    <h6>&nbsp;<md-icon>call</md-icon>{{user.patient_id.phone_number}}</h6>
+                    <h6>&nbsp;<md-icon>date_range</md-icon>{{user.appointment_date*1000 | date:'MM/dd/yyyy @ h:mma'}}</h6>
+                  </div>
+                  <md-button class="md-fab md-disabled right" ng-disabled="true" aria-label="Use Android">
+                    <img class="md-fab md-disabled right" ng-src="{{user.patient_id.profile? user.patient_id.profile:'/assets/images/noimage.jpg'}}" aria-label="Use Android" style="width: 45px;height: 50px;">
+                  </md-button>
+                </md-list-item>
+                <span layout="row" class="primary"><hr flex/> <code>&nbsp; Add Prescription &nbsp;</code><hr flex/></span>
+                <md-list-item class="md-2-line mdLine">
+                  <div class="md-list-item-text">
+                    <h6><b><u>Symptoms of summary</u>:</b></h6>
+                    <md-input-container md-no-float class="md-block">
+                      <md-icon style="display:inline-block;cursor:pointer;" ng-click="record('symptoms')">phone_in_talk</md-icon>
+                      <input ng-model="symptoms" type="text" placeholder="Speech to Text" name="symptoms">
+                    </md-input-container>
+                  </div>
+                </md-list-item>
+                <span layout="row" class="primary"><hr flex/> <code>&nbsp; Add Medicine &nbsp;</code><hr flex/></span>
+                  <form name="addMedicineSub">
+                    <div layout-gt-sm="row">
+                      <md-input-container md-no-float class="md-block">
+                        <md-icon ng-click="record('name')">local_hospital</md-icon>
+                        <label>Name</label>
+                        <input ng-model="sym.name" type="text" placeholder="Name & Power of medicine" ng-required="true" >
+                      </md-input-container>
+                      <md-input-container class="md-block" flex-gt-sm>
+                        <md-icon ng-click="record('doses')">local_hospital</md-icon>
+                        <label>No of doses</label>
+                        <input ng-model="sym.doses" placeholder="No of doses" ng-required="true">
+                      </md-input-container>
+                      <md-input-container class="md-block" flex-gt-sm>
+                        <md-icon ng-click="record('daily')">local_hospital</md-icon>
+                        <label>Daily doses</label>
+                        <input ng-model="sym.daily" placeholder="Daily doses" ng-required="true">
+                      </md-input-container>
+                      <md-input-container class="md-block" flex-gt-sm>
+                        <md-icon ng-click="record('meals')">local_hospital</md-icon>
+                        <label>Meals (Yes/No)</label>
+                        <input ng-model="sym.meals" placeholder="Meals" ng-required="true">
+                      </md-input-container>
+                    </div>
+                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                      <md-button class="black" ng-disabled="addMedicineSub.$invalid && addMedicineSub.$error" ng-click="addMedicine(sym)">Add</md-button>
+                    </section>
+                  </form>
+                  <table layout-align="center center" class="borderLine black" ng-if="medicineData.length>0" style="width: 100%;">
+                    <tr class="borderLine"> 
+                      <th class="borderLine"><b>Name & Power of medicine</b></th>
+                      <th class="borderLine"><b>No of doses</b></th>
+                      <th class="borderLine"><b>Daily doses</b></th>
+                      <th class="borderLine"><b>Meals</b></th>
+                    </tr>
+                    <tr class="borderLine" ng-repeat="res in medicineData">
+                      <td class="borderLine">{{res.name}}</td>
+                      <td class="borderLine">{{res.doses}}</td>
+                      <td class="borderLine">{{res.daily}}</td>
+                      <td class="borderLine">{{res.meals}}</td>
+                    </tr>
+                  </table>
+                  <md-list-item class="md-2-line mdLine">
+                    <div class="md-list-item-text">
+                      <h6><md-icon>attach_money</md-icon>
+                          {{user.fees}}
+                          <input type="number" class="pull-right" name="extraMoney" ng-model="extraMoney" placeholder="Extra Money" style="display: inline-block;width: 100px;margin-left: 20px;">
+                      </h6>
+                      <h6><b><u>Next Visit</u>:</b>
+                        Follow up consulation after 
+                        <md-input-container class="md-icon-float md-block" flex-gt-sm style="display: inline-block;width: 50px;">
+                          <input ng-model="user.follow_up_after" type="number" ng-required="true" class="center center">
+                        </md-input-container> days.
+                      </h6>
+                    </div>
+                  </md-list-item>
+                  <div layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                    <md-button class="md-raised md-warn" ng-click="addPriscription(user, medicineData, symptoms, 'admit', extraMoney, $event)">Admit Patient</md-button>
+                    <md-button class="md-raised md-primary" ng-click="addPriscription(user, medicineData, symptoms, 'submit', extraMoney, $event)">Submit</md-button>
+                  </div>
+              </md-list>
+            </md-card>
+          </md-content>
+        </md-card>
+      </div>
+    </ion-content>
+  </ion-nav-view>
+<style type="text/css">
+  .mdLine{
+    padding: 0px 8px;
+  }
+  .borderLine{
+    border: inset!important;
+  }
+  /* md-input-container.md-block {
+    display: inline-block;width: 50px;
+  }*/
+  md-input-container {
+    padding: 2px;margin: 0px 0;
+  }
+</style> 

@@ -1,0 +1,71 @@
+<!-- State view -->
+<ion-nav-view name="mainContent">
+  <ion-content class="has-header roomBG">
+    <div class="list">
+      <md-card>
+        <md-content md-theme="app-theme">
+          <md-card ng-repeat="usr in users| orderBy:'-appointment_date'">
+            <md-list style="border:1.5px dashed;border-top-style: none;border-bottom-style: none;">
+              <md-list-item class="md-3-line">
+                <md-button class="md-fab md-primary" aria-label="Use Android">
+                  <img ng-src="{{usr.patient_id.profile? usr.patient_id.profile:'/assets/images/noimage.jpg'}}">
+                </md-button>
+                <div class="md-list-item-text">
+                  <h3>{{usr.patient_id.prefix|titleCase}} {{usr.patient_id.first_name}} {{usr.patient_id.last_name}}</h3>
+                  <h4>{{usr.appointment_date* 1000 | date:"dd-MMM-yy '@'h:mma"}}</h4>
+                  <p>{{usr.patient_id.gender|titleCase}} (Age: {{calculateAge(usr.patient_id.dob)}} years)</p>
+                </div>
+              </md-list-item>
+              <h4 style="text-align: center;">Consultant INR {{usr.fees}}/-</h4>
+              <h4 style="text-align: center;">Admit Charge INR {{usr.bed_history.fees}}/-</h4>
+              <br/>
+              <div style="margin-left: 10px;">
+                <h5>Room Name: {{usr.bed_history.room_type}}-{{usr.bed_history.name}} </h5>
+                <h5>Room No: {{usr.bed_history.room_no}}</h5>
+                <h5>Admit Date: {{usr.bed_history.admitted_date|date:"dd-MMM-yy '@'h:mma"}}</h5>
+                <h5>Discharge Date: {{usr.bed_history.discharged_date| date:"dd-MMM-yy '@'h:mma"}}</h5>
+              </div>
+              <div class="md-2-line md-padding" layout-align="center center" ng-repeat="usr in usr.bed_history.visits">
+                <div class="md-list-item-text">
+                  <h6><b>Visit-{{$index+1}}.</b> Appointment Date: {{usr.created_date|date:"dd-MMM-yy '@'h:mma"}}</h6>
+                  <h6>Symptoms of summary: {{usr.symptoms}}</h6>
+                  <table layout-align="center center" class="borderLine" ng-if="usr.medicineData.length>0" style="width: 100%;">
+                    <tr class="borderLine">
+                      <th class="borderLine"><b>Name & Power of medicine</b></th>
+                      <th class="borderLine"><b>No of doses</b></th>
+                      <th class="borderLine"><b>Daily doses</b></th>
+                      <th class="borderLine"><b>Meals</b></th>
+                    </tr>
+                    <tr class="borderLine" ng-repeat="medicine in usr.medicineData">
+                      <td class="borderLine">{{medicine.name}}</td>
+                      <td class="borderLine">{{medicine.doses}}</td>
+                      <td class="borderLine">{{medicine.daily}}</td>
+                      <td class="borderLine">{{medicine.meals}}</td>
+                    </tr>
+                  </table>
+                  <h5 class="md-padding" style="text-align: right;margin-left: 45%;">Dr {{usr.doctor}}</h5>
+                  <h3 style="text-align: center;">- - - - - - - - - - - - - -</h3>
+                </div>
+              </div>
+              <md-list-item class="" style="text-align: right;margin-left: 45%;">
+                <p style="text-align: center;">
+                <b>{{usr.doctor_id.prefix|titleCase}} {{usr.doctor_id.first_name}} {{usr.doctor_id.last_name}}
+                </b>
+                <br/>
+                <i ng-repeat="cat in category" ng-if="cat._id==usr.doctor_id.specification">
+                {{cat.specialty}}
+                </i>
+                </p>
+              </md-list-item>
+            </md-list>
+          </md-card>
+        </md-content>
+      </md-card>
+    </div>
+  </ion-content> 
+</ion-nav-view>
+<STYLE>
+.borderLine{
+  border: inset!important;
+}
+</STYLE>

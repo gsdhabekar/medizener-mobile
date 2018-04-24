@@ -1,0 +1,97 @@
+<script type="text/ng-template" id="inputDatePicker.html">
+  <ion-item class="item-icon-left" ng-click="to.onclick(model,options)">
+    {{ model[options.key] | date : to.dateFormat }} (DOB)
+    <i class="icon ion-ios-calendar-outline"></i>
+  </ion-item>
+</script>
+<!-- State view -->
+<ion-nav-view name="mainContent">
+  <ion-content class="has-header roomBG">
+    <div class="list">
+      <md-card class="padding-16x" md-theme="app-theme">
+        <form name="addStaff">
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>wc</md-icon>
+            <label>Prefix (required)</label>
+            <md-select ng-model="user.prefix" ng-required="true">
+              <md-option ng-repeat="pre in prefix" value="{{pre.abbrev}}">
+                {{pre.abbrev}}
+              </md-option>
+            </md-select>
+          </md-input-container> 
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>person</md-icon>
+            <input ng-model="user.first_name" type="text" placeholder="Firstname (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>person</md-icon>
+            <input ng-model="user.last_name" type="text" placeholder="Lastname (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>call</md-icon>
+            <input ng-model="user.phone_number" ng-pattern="/^[789]\d{9}$/" type="text" placeholder="Phone Number (required)" name="phone_number" ng-required="true">
+            <label ng-show="addStaff.phone_number.$error.pattern">Please enter valid number</label>
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <md-icon>email</md-icon>
+            <input ng-model="user.email" type="email" placeholder="Email (required)" ng-disabled="true" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>opacity</md-icon>
+            <label>Blood Group (required)</label>
+            <md-select ng-model="user.blood_group" ng-required="true">
+              <md-option ng-repeat="bld in blood" value="{{bld.abbrev}}">
+                {{bld.abbrev}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <div class="md-block">
+            <formly-form model="formData" fields="formFields" form="mainInputForm"></formly-form>
+          </div>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>work</md-icon>
+            <input ng-model="user.experience" type="text" placeholder="Experience (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>aspect_ratio</md-icon>
+            <input ng-model="user.medical_reg_no" type="text" placeholder="Certificate No (optional)">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>local_hospital</md-icon>
+            <input ng-model="user.specification" type="text" placeholder="Specification Position (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>attach_money</md-icon>
+            <input ng-model="user.payment" ng-pattern="/^[0-9]{1,7}$/" type="text" placeholder="Salary (required)" name="payment" ng-required="true">
+            <label ng-show="addStaff.payment.$error.pattern">Please enter valid number</label>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>place</md-icon>
+            <input ng-model="user.address1" type="text" placeholder="Home Address1 (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>place</md-icon>
+            <input ng-model="user.address2" type="text" placeholder="Home Address2 (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>place</md-icon>
+            <input ng-model="user.city" type="text" placeholder="Home City (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>place</md-icon>
+            <input ng-model="user.state" type="text" placeholder="Home State (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon>place</md-icon>
+            <input ng-model="user.pincode" ng-pattern="/^[0-9]{6,6}$/" type="text" placeholder="Home Pincode (required)" name="pincode" ng-required="true">
+            <label ng-show="addStaff.pincode.$error.pattern">Please enter valid number</label>
+          </md-input-container>
+          <div layout="row" layout-align="center center" layout-wrap>
+            <md-button class="md-raised md-primary" ng-click="update(user,$event);" ng-disabled="addStaff.$invalid && addStaff.$error">Update</md-button>
+            <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+          </div>
+        </form>
+      </md-card>
+    </div>
+  </ion-content>
+</ion-nav-view>

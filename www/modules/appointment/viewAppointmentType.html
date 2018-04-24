@@ -1,0 +1,38 @@
+<!-- State view -->
+<ion-nav-view name="viewStaff">
+  <ion-content class="has-header">
+    <div class="list">
+      <md-card>
+        <md-content ng-repeat="room in data">
+          <md-list>
+            <md-list-item class="md-2-line">
+              <div class="md-list-item-text">
+              <md-button class="md-fab md-disabled" ng-disabled="true" aria-label="Use Android">
+                {{room.room_no}}
+              </md-button>
+              <div class="md-list-item-text">
+                <h3>
+                  <b ng-if="room.type==1">AC Room</b>
+                  <b ng-if="room.type==2">Non-AC Room</b>
+                  <b ng-if="room.type==3">General Ward</b>
+                  <b ng-if="room.type==4">Others</b>
+                </h3>
+                <h5>Charge: {{room.price}} Rs</h5>
+                <h5>{{room.other_facility}}</h5>
+              </div>
+            </md-list-item>
+            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+              <md-button class="md-raised md-primary" ng-click="editRoom(room._id)">Edit</md-button>
+              <md-button class="md-raised md-warn" ng-click="removeRoom(room._id, $event)">Remove</md-button>
+            </section>
+          </md-list>
+        </md-content>
+      </md-card>
+      <section layout="row" layout-align="center center" layout-wrap>
+        <md-button class="md-raised md-primary" ng-click="addRoom()">Add Room</md-button>
+      </section>
+      <br/>
+      <br/>
+    </div>
+  </ion-content>
+</ion-nav-view>

@@ -1,0 +1,288 @@
+html,body { 
+	height: 100%; 
+	margin: 0; 
+	padding: 0; 
+}
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+h1,h2,h3,h4,h5,h6,p {
+	margin: 0;
+	padding: 0;
+}
+
+/* ------------------- Application CSS ----------------------*/
+.view-container, .roomBG md-content.md-app-theme-theme {
+	background-image: url('../../assets/images/bg-blur.jpg');
+}
+.md-silde{
+	width:240px;
+	text-align:center;
+}
+.bar.bar-positive {
+	border: none;
+	background: transparent;
+}
+
+.primary { color: #009688; }
+.warn { color: #FF5722; }
+.white { color: rgba(240, 240, 240, 0.8); }
+.black { color: #000; }
+
+.full-width { width: 100%; }
+.width-90 { width: 90%; }
+.width-36 { min-width: 36px; }
+.full-height { height: 100%; }
+
+.padding { padding: 8px; }
+.padding-16x { padding: 16px; }
+.padding-left { padding-left: 8px; }
+.padding-right { padding-right: 8px; }
+.padding-top { padding-top: 8px; }
+.padding-bottom { padding-bottom: 8px; }
+.padding-4x { padding: 4px; }
+
+.mz-title {
+	width: 100%;
+	font-size: 20px;
+	text-align: center;
+	color: rgba(250, 250, 250, 0.8);
+	font-weight: 400;
+	line-height: 45px;
+}
+.mz-title > md-icon {
+	width: 36px;
+	height: 36px;
+	margin: 4px;
+	color: rgba(250, 250, 250, 0.8);
+}
+.social-bottom {
+	position: absolute;
+	bottom: 16px;
+}
+
+.menu-tab {
+	width: 90%;
+	height: 88px;
+	font-size: 10px;
+	line-height: 20px;
+	white-space: normal;
+	display: flex;
+	flex-direction: column;
+	color: #f1f1f1;
+	padding: 4px;
+}
+.menu-tab > md-icon {
+	width: 36px;
+	height: 36px;
+}
+.border-right {
+	border-right: 1px solid rgba(250, 250, 250, 0.3);
+}
+.profile {
+	width: 80px;
+	height: 80px;
+}
+.profile img {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+}
+/* ----------------------- Ionic styles overridden ------------------*/
+ion-content > div {
+	height: 100%;
+}
+ion-content > div .list {
+	height: 100%;
+}
+
+/* ----------------------- Material Icons ------------------*/
+md-content {
+	background: transparent;
+	height: 100%;
+	color: rgba(240, 240, 240, 0.8);
+	font-weight: 400;
+}
+.md-button.md-fab.md-mini {
+	background: #fff;
+	line-height: 0;
+}
+.md-button.md-fab.md-mini:hover{
+	background: rgba(230, 230, 230, 0.9);
+}
+.ion-social-facebook:before {
+	color: #4267B2;
+	font-size: 24px;
+}
+.ion-social-google:before {
+	color: #FF0000;
+	font-size: 24px;
+}
+.ion-social-twitter:before {
+	color: #1DA1F2;
+	font-size: 24px;
+}
+.md-button {
+	border-radius: 0;
+}
+.material-icons{
+	vertical-align: -25%;
+}
+
+.md-min-height{
+	min-height:100%;
+}
+
+.material-icons.md-20{
+	font-size: 20px;
+}
+
+.material-icons.md-36{
+	font-size: 36px;
+}
+
+.material-icons.md-48{
+	font-size: 48px;
+}
+
+.material-icons.md-60{
+	font-size: 60px;
+}
+
+.material-icons.md-72{
+	font-size: 72px;
+}
+
+.material-icons.md-96{
+	font-size: 96px;
+}
+
+.material-icons.md-108{
+	font-size: 108px;
+}
+
+.material-icons.md-120{
+	font-size: 120px;
+}
+
+.material-icons.md-132{
+	font-size: 132px;
+}
+
+.material-icons.md-144{
+	font-size: 144px;
+}
+
+/* ------------------- Material Background Color ----------------------*/
+.md-deep-orange-700{
+	background-color: #e64a19;
+}
+
+.md-light-green-700{
+	background-color:#689f38;
+}
+
+.md-teal-700{
+	background-color:#00796b;
+}
+
+/* ------------------- Material Color ----------------------*/
+.md-white{ color:#fff; }
+.md-amber{ color:#ffc107; }
+.md-teal{ color:#009688; }
+.md-teal-bg{ background:#009688; }
+.md-white-bg{ background:#fff; }
+
+.nopadding{ padding: 0 !important; }
+.nomargin{ margin: 0 !important; }
+
+md-list-item .md-list-item-inner > md-icon:first-child:not(.md-avatar-icon){
+    margin-top: 12px;
+}
+
+.login > md-input-container.md-app-wht-theme:not(.md-input-invalid).md-input-has-value label {
+	color: #F1F1F1;
+}
+.login > md-input-container.md-app-wht-theme:not(.md-input-invalid).md-input-focused .md-input {
+	border-color: #F1F1F1;
+}
+.login > md-input-container.md-app-theme-theme > input {
+	color: #F1F1F1;
+}
+.login > md-input-container.md-app-wht-theme .md-input {
+	color: #F1F1F1;
+	border-color: #F1F1F1;
+}
+.login > md-input-container.md-app-wht-theme > md-icon {
+	color: #F1F1F1;
+}
+.login > md-input-container label:not(.md-no-float):not(.md-container-ignore) {
+	color: #F1F1F1;
+}
+.login > md-input-container.md-app-wht-theme:not(.md-input-invalid).md-input-focused md-icon {
+	color: #F1F1F1;
+}
+
+.signup { width: 100%; }
+.signup > md-input-container.md-app-wht-theme:not(.md-input-invalid).md-input-has-value label {
+	color: #F1F1F1;
+}
+.signup > md-input-container.md-app-theme-theme > input {
+	color: #F1F1F1;
+}
+.signup > md-input-container.md-app-wht-theme .md-input {
+	color: #F1F1F1;
+	border-color: #F1F1F1;
+}
+.signup > md-input-container.md-app-wht-theme > md-icon {
+	color: #F1F1F1;
+}
+.signup > md-input-container label:not(.md-no-float):not(.md-container-ignore) {
+	color: #F1F1F1;
+}
+.signup > md-input-container.md-app-wht-theme:not(.md-input-invalid).md-input-focused .md-input {
+	border-color: #F1F1F1;
+}
+.signup > md-input-container.md-app-wht-theme:not(.md-input-invalid).md-input-focused md-icon {
+	color: #F1F1F1;
+}
+.signup > md-input-container > md-select.md-app-wht-theme .md-select-value.md-select-placeholder {
+	color: #F1F1F1;
+	border-bottom-color: #F1F1F1;
+}
+.signup > md-input-container > md-select.md-app-wht-theme .md-select-value {
+	border-bottom-color: #F1F1F1;
+}
+.signup > md-input-container > md-select.md-app-wht-theme .md-select-icon {
+	color: #F1F1F1;	
+}
+
+md-input-container > md-select {
+	margin: 8px 0;
+}
+.headerIcon .profile {
+	width: 60px;
+	height: 40px;
+}
+.headerIcon .profile img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+/*tabs css*/
+.tabs-containerv md-pagination-wrapper{
+	position: relative;
+    justify-content: center;
+}
+ion-content.has-header.scroll-content.ionic-scroll {
+    height: auto!important;
+}
+
+.roomPatient md-input-container{
+	margin: 2px 0;
+}
+.switchTable md-switch{
+	margin: 0px;
+	padding-left: 12px;
+}

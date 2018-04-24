@@ -1,0 +1,46 @@
+<!-- State view -->
+<ion-nav-view name="appoinmentList">
+  <ion-content class="has-header">
+    <md-tabs class="tabs-containerv" md-selected="1" md-dynamic-height md-border-bottom>
+      <md-tab label="Previous" ng-click="previous()"></md-tab>
+      <md-tab label="Current" ng-click="current()"></md-tab>
+      <md-tab label="Next" ng-click="next()"></md-tab>
+    </md-tabs>
+    <md-content class="md-padding">
+      <h4 class="text-center white">{{displayDate|date}}</h4>
+      <md-card md-theme="app-theme" ng-repeat="usr in users |  orderBy:'appointment_date'">
+        <md-list>
+          <md-list-item class="md-2-line">  
+            <md-button class="md-fab md-disabled" ng-disabled="true" aria-label="Use Android">
+              {{$index+1}}
+            </md-button>
+            <div class="md-list-item-text"  ng-click="patientsInfo(usr.patient_id._id,usr._id)">
+              <h3><b>{{usr.patient_id.first_name}}  {{usr.patient_id.last_name}}</b></h3>
+              <h5 ng-if="usr.type==='video_fees'"><md-icon>local_hospital</md-icon>Video</h5>
+              <h5 ng-if="usr.type==='audio_fees'"><md-icon>local_hospital</md-icon>Audio</h5>
+              <h5><md-icon>attach_money</md-icon>{{usr.fees}}*/- </h5>
+            </div>
+            <br/>
+            <md-button class="md-fab md-disabled right" ng-disabled="true" aria-label="Use Android">
+              <img class="md-fab md-disabled right" ng-src="{{usr.patient_id.profile? usr.patient_id.profile:'/assets/images/noimage.jpg'}}" aria-label="Use Android" style="width: 43px;height: 50px;">
+            </md-button>
+          </md-list-item>
+          <table align-title="center-center" style="width:100%">
+            <tr>
+              <td>
+                <md-input-container class="md-block" flex-gt-sm ng-click="statusChange(usr._id, usr.status, usr.appointment_date, $event)">
+                  &nbsp;&nbsp;<md-checkbox ng-model="usr.status" aria-label="Checkbox 1">
+                Status
+                  </md-checkbox>
+                </md-input-container>
+              </td>
+              <td align-title="align-right">
+                  Time: {{usr.appointment_date* 1000 | date:"'@'h:mma"}}
+              </td>
+            </tr>
+          </table>
+        </md-list>
+      </md-card>
+    </md-content>
+  </ion-content>
+</ion-nav-view>

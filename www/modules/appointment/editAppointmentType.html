@@ -1,0 +1,44 @@
+<!-- State view -->
+<ion-nav-view name="editRoom">
+  <ion-content class="has-header">
+    <div class="list">
+      <md-card class="padding-16x" md-theme="app-theme">
+        <form name="editRoom">
+          <md-content class="md-no-momentum">
+            <md-input-container class="md-icon-float md-block">
+              <md-icon>home</md-icon>
+              <label>Room Type (required)</label>
+              <md-select ng-model="room.type" ng-required="true">
+                <md-option ng-repeat="type in roomType" ng-value="type._id">
+                  {{type.type}}
+                </md-option>
+              </md-select>
+            </md-input-container> 
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+              <md-icon>airline_seat_individual_suite</md-icon>
+              <input ng-model="room.room_no" type="text" placeholder="Room Number (required)" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+              <md-icon>airline_seat_flat</md-icon>
+              <input ng-model="room.no_of_bed" type="text" ng-pattern="/^[0-9]{1,2}$/" placeholder="Number of Bed (required)" name="no_of_bed" ng-required="true">
+              <label ng-show="editRoom.no_of_bed.$error.pattern">Please enter valid number</label>
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+              <md-icon>attach_money</md-icon>
+              <input ng-model="room.price" type="text" ng-pattern="/^[0-9]{1,6}$/" placeholder="Per Bed Charge (required)" name="price" ng-required="true">
+              <label ng-show="editRoom.price.$error.pattern">Please enter valid number</label>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <md-icon>label</md-icon>
+              <input ng-model="room.other_facility" type="text" placeholder="Other Facility (required)" ng-required="true">
+            </md-input-container>
+            <div layout="row" layout-align="center center" layout-wrap>
+              <md-button class="md-raised md-primary" ng-click="update(room,$event);" ng-disabled="editRoom.$invalid && editRoom.$error">Update</md-button>
+              <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+            </div>
+          </md-content>
+        </form>
+      </md-card>
+    </div>
+  </ion-content>
+</ion-nav-view>

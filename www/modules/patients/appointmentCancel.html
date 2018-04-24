@@ -1,0 +1,55 @@
+<!-- State view -->
+<ion-nav-view name="appoinmentList">
+  <ion-content class="has-header roomBG">
+    <md-tabs class="tabs-containerv" md-selected="1" md-dynamic-height md-border-bottom>
+      <md-tab label="Previous" ng-click="previous()"></md-tab>
+      <md-tab label="Current" ng-click="current()"></md-tab>
+      <md-tab label="Next" ng-click="next()"></md-tab>
+    </md-tabs>
+    <div class="list">
+      <md-card>
+        <md-content md-theme="app-theme" class="md-padding">
+          <h4 class="text-center warn">{{displayDate|date}}</h4>
+          <md-card ng-repeat="usr in users |  orderBy:'appointment_date' ">
+          <md-list>
+            <md-list-item class="md-2-line">  
+              <md-button class="md-fab md-disabled" ng-disabled="true" aria-label="Use Android">
+                {{$index+1}}
+              </md-button>
+              <div class="md-list-item-text"  ng-click="patientsInfo(usr.patient_id._id,usr._id)">
+                <h3><b>{{usr.patient_id.first_name}}  {{usr.patient_id.last_name}}</b></h3>
+              </div>
+              <br/>
+              <md-button class="md-fab md-disabled right" ng-disabled="true" aria-label="Use Android">
+                <img class="md-fab md-disabled right" ng-src="{{usr.patient_id.profile?usr.patient_id.profile:'/assets/images/noimage.jpg'}}" aria-label="Use Android" style="width: 43px;height: 50px;">
+              </md-button>
+            </md-list-item>
+            <table align-title="center-center" class="switchTable" style="width:100%">
+              <tbody>
+                <tr>
+                  <td ng-if="usr.appointment_status.status!='completed'">
+                    <md-switch ng-if="currentDate<=usr.appointment_date" ng-click="statusChange(usr._id, usr.appointment_status.status, usr.appointment_date, usr, $event)" ng-model="usr.appointment_status.status" aria-label="Switch 2" ng-true-value="'cancelled'" ng-false-value="'pending'" ng-disabled="usr.appointment_status.status=='cancelled'?true:false" class="md-warn"> {{usr.appointment_status.status}}
+                    </md-switch>
+                    <md-switch ng-if="currentDate>usr.appointment_date" ng-click="statusChange(usr._id, usr.appointment_status.status, usr.appointment_date, usr, $event)" ng-model="usr.appointment_status.status" aria-label="Switch 2" ng-true-value="'cancelled'" ng-false-value="'pending'" ng-disabled="true" class="md-warn"> {{usr.appointment_status.status}}
+                    </md-switch>
+                  </td>
+                  <td ng-if="usr.appointment_status.status=='completed'">
+                    <md-switch ng-model="completedSwitch" aria-label="Switch 2" ng-true-value="'compSwitch'" ng-false-value="false" ng-disabled="true" class="md-warn"> {{usr.appointment_status.status }}
+                    </md-switch></td>
+                  <td class="text-right">
+                    Time: {{usr.appointment_date* 1000 | date:"'@'h:mma"}} &nbsp;&nbsp;&nbsp;
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </md-list>
+        </md-content>
+      </md-card>
+    </div>
+  </ion-content>
+</ion-nav-view>
+<style type="text/css">
+  md-input-container{
+    margin: 0px;
+  }
+</style>

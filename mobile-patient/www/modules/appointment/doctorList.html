@@ -1,0 +1,41 @@
+<!-- State view -->
+<ion-nav-view name="mainContent">
+  <ion-content class="has-header roomBG">
+    <div class="list">
+      <md-content md-theme="app-theme">
+        <md-input-container class="md-icon-float md-block" style="padding-left:215px;">
+          <md-icon>home</md-icon>
+          <md-select ng-model="filterValue" ng-required="true" ng-change="filterChange(filterValue)">
+            <md-option ng-repeat="type in filterData" ng-value="type.type">
+              {{type.specialtyName}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <md-card ng-repeat="usr in users">
+          <md-list class="appointmentCenter">
+            <md-list-item class="md-3-line">
+              <md-button class="md-fab md-primary" aria-label="Use Android">
+                <img class="md-fab md-disabled right" ng-src="{{usr.profile? usr.profile:'/assets/images/noimage.jpg'}}" aria-label="Use Android" style="width: 43px;height: 50px;">
+              </md-button>
+              <div class="md-list-item-text">
+                <h3><span class="blackColor">{{usr.prefix|titleCase}} {{usr.first_name}} {{usr.last_name}}</span></h3>
+                <h4><span class="blackColor">{{usr.phone_number}}</span></h4>
+                <p class="blackColor" ng-repeat="cat in category" ng-if="cat._id==usr.specification">
+                  {{cat.specialty}} ({{usr.experience}} years experience)
+                </p>
+                <p class="blackColor"><b>{{usr.hospital_name}}</b></p>
+                <h3 ng-repeat="fee in usr.fees">
+                  <p class="blackColor" ng-if="fee.type==='hospital_fees'">Hospital Fee: INR {{fee.price}}/- </p>
+                </h3>
+              </div>
+            </md-list-item>
+          </md-list>
+          <div layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <md-button class="md-raised md-warn">Call</md-button>
+            <md-button class="md-raised md-primary nomargin" ng-click="bookAppointment(usr._id, $event)">Book</md-button>
+          </div>
+        </md-card>
+      </md-content>
+    </div>
+  </ion-content> 
+</ion-nav-view>

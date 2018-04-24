@@ -1,0 +1,48 @@
+<ion-view hide-back-button="true" view-title="Address">
+  	<ion-content md-theme="app-theme">
+  		<md-content layout-padding>
+  			<form name="userForm">
+				<div layout="row" layout-xs="column" layout-align-xs="center center" layout-padding>
+			    	<h3 class="md-display-1 md-amber">
+		                <i class="material-icons md-144">local_shipping</i>
+		            </h3>
+			    </div>
+			    <div layout="row" layout-xs="column" layout-align="center" layout-padding>
+			    	<p class="md-body-1 text-center">
+			    		Choose your location and get all restaurants results of your near places
+			    	</p>
+			    </div>
+			    <div layout="row" layout-xs="column">
+			    	<md-input-container class="md-block" flex-gt-sm>
+			            <label>City</label>
+			            <md-select ng-model="user.city" md-on-open="loadCities()" ng-required="true">
+			              	<md-option ng-repeat="city in cities | unique:'city'" ng-value="city.city">
+			                	{{city.city}}
+			              	</md-option>
+			            </md-select>
+			        </md-input-container>
+			        <md-input-container class="md-block" flex-gt-sm>
+			            <label>Location</label>
+			            <md-select ng-model="user.location" md-on-open="loadLocations(user.city)" 
+			            	ng-disabled="!user.city" ng-required="true">
+			              	<md-option ng-repeat="location in locations" ng-value="location.location">
+			                	{{location.location}}
+			              	</md-option>
+			            </md-select>
+			        </md-input-container>
+			    </div>
+			    <div layout="row" layout-xs="column" layout-padding>
+					<md-button class="md-primary" aria-label="Use Current Location" ng-click="getLocation()">
+		                <i class="material-icons">explore</i> Use my current location
+		            </md-button>
+			    </div>
+			</form>
+		</md-content>
+		<div class="md-actions" layout="column" md-autofocus>
+			<md-button class="md-primary md-raised" aria-label="Use Current Location" 
+				ng-click="showRestaurants(user)" ng-disabled="userForm.$invalid">
+                Show Restaurants <i class="material-icons md-20">arrow_forward</i>
+            </md-button>
+		</div>
+  	</ion-content>
+</ion-view>

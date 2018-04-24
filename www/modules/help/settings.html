@@ -1,0 +1,149 @@
+<!-- State view -->
+<ion-nav-view name="appoinmentList">
+  <ion-content class="has-header">
+    <div class="list">
+      <h4 class="appointmentCenter">{{displayDate|date}}</h4>
+      <md-card>
+        <md-content md-theme="app-theme">
+          <md-list>
+            <md-list-item class="md-2-line">
+              <table align-title="center-center"  style="width:100%">
+                <tr>
+                  <td align-title="align-right" style="width:95%">
+                    Appointment Created
+                  </td>
+                  <td style="width:5%">
+                    <md-switch ng-change="statusChange(users[0]._id, users.appCreated, 'appointmentCreated', $event)" ng-model="users.appCreated.notification" aria-label="Switch 2" ng-true-value="true" ng-false-value="false" class="md-warn">{{user.appCreated.notification}}
+                    </md-switch>
+                  </td>
+                </tr>
+              </table>
+            </md-list-item>
+          </md-list style="min-height: 0;">
+        </md-content>
+      </md-card>
+      <md-card>
+        <md-content md-theme="app-theme">
+          <md-list>
+            <md-list-item class="md-2-line" style="min-height: 0;">
+              <table align-title="center-center"  style="width:100%">
+                <tr>
+                  <td align-title="align-right" style="width:95%">
+                    Appointment Cancelled
+                  </td>
+                  <td style="width:5%">
+                    <md-switch ng-change="statusChange(users[0]._id, users.appCancelled,'appointmentCancelled', $event)" ng-model="users.appCancelled.notification" aria-label="Switch 2" ng-true-value="true" ng-false-value="false" class="md-warn">{{user.appCancelled.notification}}
+                    </md-switch>
+                  </td>
+                </tr>
+              </table>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </md-card>
+      <md-card>
+        <md-content md-theme="app-theme">
+          <md-list>
+            <md-list-item class="md-2-line" style="min-height: 0;">
+              <table align-title="center-center"  style="width:100%">
+                <tr>
+                  <td align-title="align-right" style="width:95%">
+                    Appointment Changed
+                  </td>
+                  <td style="width:5%">
+                    <md-switch ng-change="statusChange(users[0]._id, users.appChanged, 'appointmentChanged', $event)" ng-model="users.appChanged.notification" aria-label="Switch 2" ng-true-value="true" ng-false-value="false" class="md-warn">{{user.appChanged.notification}}
+                    </md-switch>
+                  </td>
+                </tr>
+              </table>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </md-card>
+      <md-card>
+        <md-content md-theme="app-theme">
+          <md-list>
+            <md-list-item class="md-2-line" style="min-height: 0;">
+              <table align-title="center-center"  style="width:100%">
+                <tr>
+                  <td align-title="align-right" style="width:95%">
+                    Appointment Remainder
+                  </td>
+                  <td style="width:5%">
+                    <md-switch ng-change="statusChange(users[0]._id, users.appRemainder, 'appointmentRemainder', $event)" ng-model="users.appRemainder.notification" aria-label="Switch 2" ng-true-value="true" ng-false-value="false" class="md-warn">{{user.appRemainder.notification}}
+                    </md-switch>
+                  </td>
+                </tr>
+              </table>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </md-card>
+      <md-card>
+        <md-content md-theme="app-theme">
+          <md-list>
+            <md-list-item class="md-2-line" style="min-height: 0;">
+              <table align-title="center-center"  style="width:100%">
+                <tr>
+                  <td align-title="align-right" style="width:95%">
+                    Birthday Wishes Remainder
+                  </td>
+                  <td style="width:5%">
+                    <md-switch ng-change="statusChange(users[0]._id, users.birthRemainder, 'birthdayRemainder', $event)" ng-model="users.birthRemainder.notification" aria-label="Switch 2" ng-true-value="true" ng-false-value="false" class="md-warn">{{user.birthRemainder.notification}}
+                    </md-switch>
+                  </td>
+                </tr>
+              </table>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </md-card>
+      <md-card>
+        <md-content md-theme="app-theme">
+          <md-list>
+            <md-list-item class="md-2-line" style="min-height: 0;">
+              <table align-title="center-center"  style="width:100%">
+                <tr>
+                  <td align-title="align-right" style="width:95%">
+                    Follow-up Checkup
+                  </td>
+                  <td style="width:5%">
+                    <md-switch ng-change="statusChange(users[0]._id, users.follCheckup, 'followupCheckup', $event)" ng-model="users.follCheckup.notification" aria-label="Switch 2" ng-true-value="true" ng-false-value="false" class="md-warn">{{user.follCheckup.notification}}
+                    </md-switch>
+                  </td>
+                </tr>
+              </table>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </md-card>
+      <md-card>
+        <md-content md-theme="app-theme">
+          <md-list>
+            <md-list-item class="md-2-line" style="min-height: 0;">
+              <table align-title="center-center"  style="width:100%">
+                <tr>
+                  <td align-title="align-right" style="width:95%">
+                    Payment Acceptance
+                  </td>
+                  <td style="width:5%">
+                    <md-switch ng-change="statusChange(users[0]._id, users.payAcceptance, 'paymentAcceptance', $event)" ng-model="users.payAcceptance.notification" aria-label="Switch 2" ng-true-value="true" ng-false-value="false" class="md-warn">{{user.payAcceptance.notification}}
+                    </md-switch>
+                  </td>
+                </tr>
+              </table>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </md-card>
+    </div>
+  </ion-content>
+</ion-nav-view>
+<style type="text/css">
+  md-input-container{
+    margin: 0px;
+  }
+  .appointmentCenter{
+    text-align: center;
+  }
+</style>

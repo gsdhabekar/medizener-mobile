@@ -1,0 +1,41 @@
+  <!-- State view -->
+<ion-nav-view name="viewStaff">
+  <ion-content class="has-header roomBG">
+    <div class="list">
+      <md-card>
+        <md-content md-theme="app-theme">
+          <md-list>
+            <md-list-item class="md-2-line">
+              <div class="md-list-item-text">
+                <div layout="row" layout-align="center center" layout-wrap>
+                  <md-button class="md-raised md-primary" ng-click="add()">Add New Staff</md-button>
+                </div>
+                <md-card ng-repeat="usr in users">
+                  <md-list>
+                    <md-list-item class="md-2-line" ng-click="individualViewStaff(usr._id)">  
+                      <md-button class="md-fab md-disabled" ng-disabled="true" aria-label="Use Android">
+                        {{$index+1}}
+                      </md-button>
+                      <div class="md-list-item-text">
+                        <h3><b>{{usr.first_name}}  {{usr.last_name}}</b></h3>
+                        <h5><md-icon>call</md-icon> {{usr.phone_number}}</h5>
+                        <h6><md-icon>local_hospital</md-icon> {{usr.specification}}</h6>
+                      </div>
+                      <md-button class="md-fab md-disabled right" ng-disabled="true" aria-label="Use Android">
+                        <img class="md-fab md-disabled right" ng-src="{{usr.profile? usr.patient_id.profile:'/assets/images/noimage.jpg'}}" aria-label="Use Android" style="width: 45px;height: 50px;">
+                      </md-button>
+                    </md-list-item>
+                    <div layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                      <md-button class="md-raised md-primary" ng-click="editStaff(usr._id)">Edit</md-button>
+                      <md-button class="md-raised md-warn" ng-click="removeStaff(usr._id, $event)">Remove</md-button>
+                    </div>
+                  </md-list>
+                </md-card>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </md-card>
+    </div>
+  </ion-content>
+</ion-nav-view>

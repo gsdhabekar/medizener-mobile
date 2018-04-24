@@ -1,0 +1,15 @@
+{
+  "name": "Medizener",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.1.1"
+  },
+  "dependencies": {
+    "angular-aria": "1.4.8",
+    "angular-material": "~1.0.1",
+    "oclazyload": "~1.0.9",
+    "ngCordova": "~0.1.23-alpha",
+    "angular-resource": "^1.5.7",
+    "ionic-datepicker": "^1.2.1"
+  }
+}

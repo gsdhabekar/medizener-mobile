@@ -1,0 +1,41 @@
+<!-- State view -->
+<ion-nav-view name="viewStaff">
+  <ion-content class="has-header roomBG">
+    <div class="list">
+      <md-card>
+        <md-content md-theme="app-theme">
+          <md-list>
+            <md-list-item class="md-2-line">
+              <div class="md-list-item-text">
+                <div layout="row" md-theme="app-theme" layout-align="center center" layout-wrap>
+                  <md-button class="md-raised md-primary" ng-click="addRoom()">Add Room</md-button>
+                  <md-button class="md-raised md-primary" ng-click="viewStatus()">View Room</md-button>
+                </div>
+                <div ng-repeat="room in rooms">
+                  <md-card ng-repeat="r in room.beds">
+                    <md-list>
+                      <md-list-item class="md-2-line">  
+                        <md-button class="md-fab md-disabled" ng-disabled="true" aria-label="Use Android">
+                          {{room.room_no}}-{{r.bed_no}}
+                        </md-button>
+                        <div class="md-list-item-text">
+                          <h3>{{room.room_type}} Room</h3>
+                          <h5>Charge: {{room.fees}} Rs</h5>
+                          <h5>Other Facility: {{room.other_facility}}</h5>
+                        </div>
+                      </md-list-item>
+                    </md-list>
+                  </md-card>
+                  <div layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                    <md-button class="md-raised md-primary" ng-click="editRoom(room._id)">Edit</md-button>
+                    <md-button class="md-raised md-warn" ng-click="removeRoom(room._id, $event)">Remove</md-button>
+                  </div>
+                </div>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </md-card>
+    </div>
+  </ion-content>
+</ion-nav-view>
